@@ -1,0 +1,50 @@
+﻿<Page
+    x:Class="CalculatorApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CalculatorApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Page.BottomAppBar>
+		<CommandBar x:Name="appbar" Background="#FFE1E1E1" Foreground="#FF303030" BorderThickness="0,1,0,0">
+			<CommandBar.SecondaryCommands>
+				<AppBarButton Label="substitutions" Click="toSubstitutions"/>
+				<AppBarButton Label="settings" Click="toSettings"/>
+			</CommandBar.SecondaryCommands>
+			<AppBarButton Icon="Add" Label="add line" Foreground="Black" Click="addLine"/>
+			<AppBarToggleButton Icon="Bullets" Label="reorder" Click="ReorderChecked"/>
+		</CommandBar>
+	</Page.BottomAppBar>
+
+    <Grid x:Name="root">
+    	<Grid.Background>
+    		<SolidColorBrush Color="#FFE7E7E7"/>
+    	</Grid.Background>
+    	<Grid x:Name="results" Width="70" HorizontalAlignment="Right" Background="#0C000000"/>
+    	<!--<ScrollViewer>
+
+    		<StackPanel x:Name="holder" Orientation="Vertical" VerticalAlignment="Top">
+    			<local:SyntaxLabel VerticalAlignment="Top" Text="salary = 400 + 500" Margin="0"/>
+    			<local:SyntaxLabel VerticalAlignment="Top" Text="bills = 200 * 5 people" Margin="0"/>
+    			<local:SyntaxLabel VerticalAlignment="Top" Text="( 15 + salary ) - bills * 5" Margin="0"/>
+				
+    		</StackPanel>
+
+			
+    	</ScrollViewer>-->
+		<ListView ItemsSource="{Binding OpenNotebook.Lines}" ReorderMode="{Binding ReorderEnabled}">
+			<ListView.ItemTemplate>
+				<DataTemplate><local:SyntaxLabel Width="Auto" HorizontalAlignment="Stretch"/></DataTemplate>
+			</ListView.ItemTemplate>
+
+			<ListView.ItemContainerStyle>
+    <Style TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+</ListView.ItemContainerStyle>
+
+		</ListView>
+    </Grid>
+</Page>

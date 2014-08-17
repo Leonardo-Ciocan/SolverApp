@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="CalculatorApp.ThemePreview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CalculatorApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignWidth="400" Width="150" Height="92.917" FontFamily="Seoge wp" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0">
+    
+    <Border BorderThickness="1" BorderBrush="#FFA7A7A7">
+    
+		<Grid Background="{Binding Background}" Margin="0,0,0,0.333">
+			<TextBlock Foreground="{Binding RegularText}" HorizontalAlignment="Left" Margin="14,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Assets/consolas.ttf#Consolas">
+				<Run Text="("/>
+				<Run Foreground="{Binding NumberText}" Text="150 "/>
+				<Run Foreground="{Binding OperatorText}" Text="+"/>
+				<Run Text=" "/>
+				<Run Foreground="{Binding NumberText}" Text="60"/>
+				<Run Text=") "/>
+				<Run Foreground="{Binding OperatorText}" Text="/"/>
+				<Run Text=" "/>
+				<Run Foreground="{Binding NumberText}" Text="12 "/>
+			</TextBlock>
+			<TextBlock Foreground="{Binding RegularText}" HorizontalAlignment="Left" Margin="14,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Assets/consolas.ttf#Consolas">
+				<Run Foreground="{Binding NumberText}" Text="1200 "/>
+				<Run Foreground="{Binding OperatorText}" Text="- "/>
+				<Run Foreground="#FF9DAB0B" Text="50%"/>
+			</TextBlock>
+			<TextBlock Foreground="{Binding RegularText}" HorizontalAlignment="Left" Margin="14,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Assets/consolas.ttf#Consolas" Width="126">
+				<Run Foreground="{Binding NumberText}" Text="300 "/>
+				<Run Text="dollars "/>
+				<Run Foreground="{Binding OperatorText}" Text="x"/>
+				<Run Text=" "/>
+				<Run Foreground="{Binding NumberText}" Text="40 "/>
+				<Run Text="people"/>
+			</TextBlock>
+
+		</Grid>
+	</Border>
+</UserControl>

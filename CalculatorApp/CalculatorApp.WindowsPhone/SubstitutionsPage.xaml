@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="CalculatorApp.SubstitutionsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CalculatorApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Page.BottomAppBar>
+		<CommandBar>
+			<AppBarButton Icon="Add" Label="add" Click="add"/>
+		</CommandBar>
+	</Page.BottomAppBar>
+
+    <Grid>
+    	<Grid.Background>
+    		<SolidColorBrush Color="{ThemeResource PhoneChromeColor}"/>
+    	</Grid.Background>
+    	<ListView ItemsSource="{Binding OpenNotebook.Substitutions}" Margin="0">
+    		<ListView.ItemTemplate>
+    			<DataTemplate><local:SubstitutionControl Width="Auto" HorizontalAlignment="Stretch"/></DataTemplate>
+    		</ListView.ItemTemplate>
+
+    		<ListView.ItemContainerStyle>
+    			<Style TargetType="ListViewItem">
+    				<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    			</Style>
+    		</ListView.ItemContainerStyle>
+
+    	</ListView>
+		
+    </Grid>
+</Page>
