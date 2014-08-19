@@ -8,8 +8,10 @@ using Windows.UI.Xaml.Media;
 
 namespace CalculatorApp
 {
-    public class Notebook
+    public class Sheet
     {
+        public string ID = Guid.NewGuid().ToString();
+
         public Solver Solver = new Solver();
 
         public Dictionary<string, Brush> variableColors = new Dictionary<string, Brush>();
@@ -26,9 +28,13 @@ namespace CalculatorApp
             new Substitution("lambda" , "λ"),
             new Substitution("/" , "÷"),
             new Substitution("*" , "x"),
-            new Substitution("delta","Δ")/*,
-            new Substitution("(" , " ( "),
-            new Substitution(")" , " ) ")*/
+            new Substitution("delta","Δ"),
+            new Substitution("times" , "*"),
+            new Substitution("divided" , "/"),
+            new Substitution("plus" , "+"),
+            new Substitution("minus" , "-"),
+            new Substitution("equals" , "="),
+            new Substitution("percent" , "%")
         };
 
         public ObservableCollection<Substitution> Substitutions

@@ -6,6 +6,11 @@ namespace CalculatorApp
 {
     public class Core
     {
-        //public static SuperSolver.Solver Solver = new SuperSolver.Solver();
+        public static List<Sheet> Books = new List<Sheet>();
+
+        public async void LoadAll()
+        {
+
+        }
     }
 }

@@ -10,8 +10,8 @@ namespace CalculatorApp
 {
     public class AppViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Notebook> Notebooks = new ObservableCollection<Notebook>();
-        public Notebook OpenNotebook { get; set; }
+        public ObservableCollection<Sheet> Notebooks = new ObservableCollection<Sheet>();
+        public Sheet OpenNotebook { get; set; }
 
 #if WINDOWS_PHONE_APP
 

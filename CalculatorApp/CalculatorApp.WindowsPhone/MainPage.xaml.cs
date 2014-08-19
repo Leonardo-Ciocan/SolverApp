@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.SpeechRecognition;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -29,12 +30,17 @@ namespace CalculatorApp
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            
         }
 
         
-        Notebook notebook = new Notebook();
+        Sheet notebook = new Sheet();
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            
+
+
             await StatusBar.GetForCurrentView().HideAsync();
             App.Model.OpenNotebook = notebook;
             DataContext = App.Model;
@@ -68,6 +74,21 @@ namespace CalculatorApp
         private void toSettings(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
         	Frame.Navigate(typeof(SettingsPage), App.Model);
+        }
+
+
+        SpeechRecognizer recoWithUI = new SpeechRecognizer();
+        private  async void initSpeeach(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            await recoWithUI.CompileConstraintsAsync();
+            recoWithUI.UIOptions.AudiblePrompt = "What do you want to calculate?";
+            recoWithUI.UIOptions.ExampleText = "salary equals 12 times 15";
+            var result = await recoWithUI.RecognizeWithUIAsync();
+
+            if (result.Text != "")
+            {
+                App.Model.OpenNotebook.Lines.Add(new Line { LineNumber = App.Model.OpenNotebook.Lines.Count + 1  , Expression = result.Text});
+            }
         }
     }
 }

@@ -15,6 +15,7 @@
 			</CommandBar.SecondaryCommands>
 			<AppBarButton Icon="Add" Label="add line" Foreground="Black" Click="addLine"/>
 			<AppBarToggleButton Icon="Bullets" Label="reorder" Click="ReorderChecked"/>
+			<AppBarButton Icon="Microphone" Label="speak" Click="initSpeeach"/>
 		</CommandBar>
 	</Page.BottomAppBar>
 

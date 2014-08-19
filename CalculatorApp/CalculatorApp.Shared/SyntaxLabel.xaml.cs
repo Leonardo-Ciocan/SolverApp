@@ -37,7 +37,7 @@ namespace CalculatorApp
 
 
         Line line;
-        Notebook notebook;
+        Sheet notebook;
         FontFamily consolas = new FontFamily("ms-appx:///Assets/consolas.ttf#Consolas");
 
         int i = 0;
@@ -81,6 +81,7 @@ namespace CalculatorApp
                     if (hiddenText.Text.Contains(" " + pair.Key) || hiddenText.Text.Contains(pair.Key + " ") || hiddenText.Text == pair.Key)
                     {
                         hiddenText.Text = hiddenText.Text.Replace(" " + pair.Key, " " + pair.Value);
+                        hiddenText.Text = hiddenText.Text.Replace( pair.Key + " " ,  pair.Value+ " " );
                     }
                 }
                 hiddenText.SelectionStart = s;
@@ -110,6 +111,22 @@ namespace CalculatorApp
             {
                 root.Background = null;
             };
+
+
+            int s1 = hiddenText.SelectionStart, l1= hiddenText.SelectionLength;
+            foreach (Substitution pair in notebook.Substitutions)
+            {
+                if (hiddenText.Text.Contains(" " + pair.Key) || hiddenText.Text.Contains(pair.Key + " ") || hiddenText.Text == pair.Key)
+                {
+                    hiddenText.Text = hiddenText.Text.Replace(" " + pair.Key, " " + pair.Value);
+                    hiddenText.Text = hiddenText.Text.Replace(pair.Key + " ", pair.Value + " ");
+                }
+            }
+            hiddenText.SelectionStart = s1;
+            hiddenText.SelectionLength = l1;
+
+            DisplayText(line.Expression);
+
 
             /*this.Tapped += (Action, b) =>
             {
