@@ -110,6 +110,28 @@ namespace CalculatorApp
             }
         }
 
+        public bool Degrees
+        {
+            get
+            {
+                object k;
+                if (!ApplicationData.Current.RoamingSettings.Values.TryGetValue("Degrees", out k))
+                {
+                    ApplicationData.Current.RoamingSettings.Values["Degrees"] = true;
+                    return true;
+                }
+                else
+                {
+                    return (bool)k;
+                }
+            }
+            set
+            {
+                ApplicationData.Current.RoamingSettings.Values["Degrees"] = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string caller = null)
@@ -130,5 +152,6 @@ namespace CalculatorApp
         public Brush RegularText { get; set; }
         public Brush OperatorText { get; set; }
         public Brush NumberText { get; set; }
+        public Brush PercentageText { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CalculatorApp
@@ -191,9 +192,50 @@ namespace CalculatorApp
             return 0.0;
         }
 
+        bool Degrees { get{
+            return App.Model.Settings.Degrees; 
+        } }
 
+        public static Regex kNotation = new Regex(@"\d+k");
+        public static Regex FunctionNotation = new Regex(@"(sin|cos|exp|tan|ln)\((\d+|\d+.\d+)\)");
         public double EvaluateNested(string expr)
         {
+            expr = kNotation.Replace(expr , (match) =>
+            {
+                string v = match.Value;
+                v = v.Replace("k", "");
+                return (double.Parse(v) * 1000).ToString();
+            });
+
+            expr = FunctionNotation.Replace(expr, (match) =>
+            {
+                string v = match.Value;
+                v = v.Replace(")", "");
+                string[] parts = v.Split('(');
+                double number = double.Parse(parts[1]);
+                switch (parts[0])
+                {
+                    case "sin":
+                        number = Math.Sin(number * (Degrees ? (Math.PI / 180) : 1));
+                        break;
+                    case "cos":
+                        number = Math.Cos(number * (Degrees ? (Math.PI / 180) : 1));
+                        break;
+                    case "tan":
+                        number = Math.Tan(number * (Degrees ? (Math.PI / 180) : 1));
+                        break;
+                    case "ln":
+                        number = Math.Log(number);
+                        break;
+                    case "exp":
+                        number = Math.Exp(number);
+                        break;
+                }
+                return number.ToString();
+            });
+            
+            
+
             if (expr.Contains("="))
             {
                 return EvaluateAssignment(expr);

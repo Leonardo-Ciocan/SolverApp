@@ -12,7 +12,7 @@
     
     <Grid x:Name="root" VerticalAlignment="Top">
     	<TextBlock x:Name="txt" Text="{Binding Expression}" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Segoe UI" FontSize="26.667" Margin="38,0,70,0"/>
-    	<TextBox x:Name="hiddenText"  Text="{Binding Expression , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#00000000" Background="Transparent" BorderBrush="Transparent" Padding="0" FontSize="26.667" Opacity="0" Margin="36,0,70,0"/>
+    	<TextBox x:Name="hiddenText"  Text="{Binding Expression , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#00000000" Background="Transparent" BorderBrush="Transparent" Padding="0" FontSize="26.667" Opacity="0" Margin="36,0,70,0" InputScope="Formula"/>
     	<Grid HorizontalAlignment="Right" Width="65">
     		<TextBlock x:Name="resultText" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFAFAFAF" Text="35" Margin="0,0,5,0" FontSize="26.667" FontFamily="Assets/consolas.ttf#Consolas"/>
     	</Grid>

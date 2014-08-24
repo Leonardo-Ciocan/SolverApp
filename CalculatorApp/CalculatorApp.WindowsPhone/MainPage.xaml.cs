@@ -29,20 +29,20 @@ namespace CalculatorApp
 
             this.InitializeComponent();
 
-            this.NavigationCacheMode = NavigationCacheMode.Required;
+            this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
             
         }
 
         
-        Sheet notebook = new Sheet();
+        Sheet notebook ;//= new Sheet();
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
 
-
-            await StatusBar.GetForCurrentView().HideAsync();
+            notebook = e.Parameter as Sheet;
             App.Model.OpenNotebook = notebook;
+            await StatusBar.GetForCurrentView().HideAsync();
+            
             DataContext = App.Model;
 
             root.Background = AppSettings.Themes[App.Model.Settings.ThemeIndex].Background;
@@ -58,7 +58,7 @@ namespace CalculatorApp
             //i++;
             //holder.Children.Add(new SyntaxLabel(i));
             //(holder.Children.Last() as SyntaxLabel).Focus(FocusState.Keyboard);
-            App.Model.OpenNotebook.Lines.Add(new Line{ LineNumber =  App.Model.OpenNotebook.Lines.Count+1});
+            App.Model.OpenNotebook.Lines.Add(new Line{ LineNumber =  App.Model.OpenNotebook.Lines.Count+1 , SheetID = notebook.ID});
         }
 
         private void ReorderChecked(object sender,RoutedEventArgs e)

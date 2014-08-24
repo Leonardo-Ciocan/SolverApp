@@ -22,6 +22,7 @@ namespace CalculatorApp
     public sealed partial class SyntaxLabel : UserControl
     {
 
+        public bool IsStaticLabel { get; set; }
         /*string _text ="";
         public string Text
         {
@@ -50,15 +51,47 @@ namespace CalculatorApp
 
         public SyntaxLabel()
         {
+            DataContextChanged += (AlignmentX, k) =>
+            {
+                //redm
+                
+
+
+                //DisplayText(line.Expression);
+            }; 
+
             this.InitializeComponent();
             Loaded += SyntaxLabel_Loaded;
         }
 
         void SyntaxLabel_Loaded(object sender, RoutedEventArgs e)
         {
-            Focus(FocusState.Keyboard);
-            notebook = App.Model.OpenNotebook;
+            if(!IsStaticLabel) Focus(FocusState.Keyboard);
+
+
             line = (DataContext as Line);
+            if (line == null) return;
+            if (IsStaticLabel)
+            {
+                notebook = Core.Sheets.Where((x, b) => x.ID == line.SheetID).FirstOrDefault<Sheet>();
+            }
+
+
+            line.PropertyChanged += (a, b) =>
+            {
+                if (b.PropertyName == "ShouldUpdate")
+                {
+                    DisplayText(line.Expression);
+                }
+                else
+                {
+                    notebook.EvaluateAll();
+                    //DisplayText(line.Expression);
+                }
+            };
+
+            notebook = App.Model.OpenNotebook;
+            
            // num.Text = i.ToString();
 
             txt.FontFamily = consolas;
@@ -75,6 +108,7 @@ namespace CalculatorApp
 
             hiddenText.TextChanged += (a, b) =>
             {
+                if (IsStaticLabel) return;
                 int s  = hiddenText.SelectionStart, l = hiddenText.SelectionLength;
                 foreach (Substitution pair in notebook.Substitutions)
                 {
@@ -88,45 +122,36 @@ namespace CalculatorApp
                 hiddenText.SelectionLength = l;
             };
 
-            line.PropertyChanged += (a, b) =>
-            {
-                if (b.PropertyName == "ShouldUpdate")
-                {
-                    DisplayText(line.Expression);
-                }
-                else
-                {
-                    notebook.EvaluateAll();
-                    DisplayText(line.Expression);
-                }
-            };
+            
 
             var over = new SolidColorBrush(Color.FromArgb(20,0,0,0));
-            root.Background = over;
+            if(!IsStaticLabel) root.Background = over;
             hiddenText.GotFocus += (a, b) =>
             {
                 root.Background = over;
             };
-            hiddenText.LostFocus += (a, b) =>
+            hiddenText.LostFocus += async (a, b) =>
             {
                 root.Background = null;
+                Core.Save(notebook);
             };
 
-
-            int s1 = hiddenText.SelectionStart, l1= hiddenText.SelectionLength;
-            foreach (Substitution pair in notebook.Substitutions)
+            if (!IsStaticLabel)
             {
-                if (hiddenText.Text.Contains(" " + pair.Key) || hiddenText.Text.Contains(pair.Key + " ") || hiddenText.Text == pair.Key)
+                int s1 = hiddenText.SelectionStart, l1 = hiddenText.SelectionLength;
+                foreach (Substitution pair in notebook.Substitutions)
                 {
-                    hiddenText.Text = hiddenText.Text.Replace(" " + pair.Key, " " + pair.Value);
-                    hiddenText.Text = hiddenText.Text.Replace(pair.Key + " ", pair.Value + " ");
+                    if (hiddenText.Text.Contains(" " + pair.Key) || hiddenText.Text.Contains(pair.Key + " ") || hiddenText.Text == pair.Key)
+                    {
+                        hiddenText.Text = hiddenText.Text.Replace(" " + pair.Key, " " + pair.Value);
+                        hiddenText.Text = hiddenText.Text.Replace(pair.Key + " ", pair.Value + " ");
+                    }
                 }
+                hiddenText.SelectionStart = s1;
+                hiddenText.SelectionLength = l1;
             }
-            hiddenText.SelectionStart = s1;
-            hiddenText.SelectionLength = l1;
 
             DisplayText(line.Expression);
-
 
             /*this.Tapped += (Action, b) =>
             {
@@ -167,7 +192,7 @@ namespace CalculatorApp
             NormalBrush = AppSettings.Themes[App.Model.Settings.ThemeIndex].RegularText;
             OperatorBrush = AppSettings.Themes[App.Model.Settings.ThemeIndex].OperatorText;
 
-
+            if (notebook == null) notebook = new Sheet();
             double answer = notebook.Solver.EvaluateNested(expr);
             answer = RoundToSignificantDigits(answer, App.Model.Settings.SignificantFigures);
             resultText.Text = answer.ToString();
@@ -184,7 +209,7 @@ namespace CalculatorApp
             for(int x =0; x < ls.Count();x++){
                 string s = ls[x];
                 double d;
-                bool isNum = double.TryParse(s, out d) ||  (s.Contains("%") && double.TryParse(s.Replace("%",""),out d));
+                bool isNum = double.TryParse(s, out d) ||  (s.Contains("%") && double.TryParse(s.Replace("%",""),out d)) || Solver.kNotation.IsMatch(s);
                 bool var = notebook.Solver.VariableTable.ContainsKey(s);
                 bool op = s == "+" || s == "-" || s == "÷" || s == "x";//notebook.Solver.Operators.Contains(s) || notebook.Substitutions.Where((key,val) => notebook.Solver.Operators.Contains(key.Key)).Count() > 0;
 
@@ -211,9 +236,9 @@ namespace CalculatorApp
                 {
                     if(!notebook.variableColors.ContainsKey(s)){
 
-                        notebook.variableColors[s] = new SolidColorBrush(Color.FromArgb(255, (byte)r.Next(0, 255), (byte)r.Next(0, 255), (byte)r.Next(0, 255)));
+                        notebook.variableColors[s] = Color.FromArgb(200, (byte)r.Next(0, 255), (byte)r.Next(0, 255), (byte)r.Next(0, 255));
                     }
-                    item.Foreground = notebook.variableColors[s];
+                    item.Foreground =new SolidColorBrush( notebook.variableColors[s]);
                 } 
                 txt.Inlines.Add(item);
             }

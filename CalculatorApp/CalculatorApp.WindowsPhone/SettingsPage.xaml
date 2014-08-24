@@ -49,6 +49,7 @@
     			</ListView>
 
     		</StackPanel>
+    		<CheckBox Content="Use degrees instead of radians" HorizontalAlignment="Stretch" VerticalAlignment="Top" IsChecked="{Binding Degrees, Mode=TwoWay}" Margin="0"/>
 
     	</StackPanel>
 

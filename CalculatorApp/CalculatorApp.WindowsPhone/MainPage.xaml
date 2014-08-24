@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Foreground="{x:Null}">
 	<Page.BottomAppBar>
 		<CommandBar x:Name="appbar" Background="#FFE1E1E1" Foreground="#FF303030" BorderThickness="0,1,0,0">
 			<CommandBar.SecondaryCommands>
