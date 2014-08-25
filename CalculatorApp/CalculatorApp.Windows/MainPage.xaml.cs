@@ -25,7 +25,45 @@ namespace CalculatorApp
         public MainPage()
         {
             this.InitializeComponent();
-            for (int x = 0; x < 3; x++) holder.Children.Add(new SyntaxLabel(x));
+            Loaded += SheetListPage_Loaded;
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
+            Core.LoadAll();
+        }
+
+        Sheet notebook;
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            DataContext = App.Model;
+            
+        }
+
+        private void addLine(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            
+            //i++;
+            //holder.Children.Add(new SyntaxLabel(i));
+            //(holder.Children.Last() as SyntaxLabel).Focus(FocusState.Keyboard);
+            App.Model.OpenNotebook.Lines.Add(new Line { LineNumber = App.Model.OpenNotebook.Lines.Count + 1, SheetID = notebook.ID });
+        }
+
+        
+
+        async void SheetListPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            list.ItemsSource = Core.Sheets;
+            list.IsItemClickEnabled = true;
+            list.ItemClick += (a, b) =>
+            {
+                notebook = b.ClickedItem as Sheet;
+                App.Model.OpenNotebook = b.ClickedItem as Sheet;
+                actualList.DataContext = App.Model.OpenNotebook;
+            };
+        }
+
+        
+        private void add(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Core.Sheets.Add(new Sheet { });
         }
     }
 }

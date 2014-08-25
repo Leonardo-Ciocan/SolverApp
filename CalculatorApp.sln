@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorApp.Windows", "Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorApp.WindowsPhone", "CalculatorApp\CalculatorApp.WindowsPhone\CalculatorApp.WindowsPhone.csproj", "{D026AF9D-DC02-4ACD-83B3-99283282A5A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.pcl", "..\..\..\..\Desktop\UnitsNet-develop\Src\UnitsNet\UnitsNet.pcl.csproj", "{52C647A6-A05A-4CBD-A18A-9F1D260800F8}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CalculatorApp\CalculatorApp.Shared\CalculatorApp.Shared.projitems*{d026af9d-dc02-4acd-83b3-99283282a5a0}*SharedItemsImports = 4
@@ -76,6 +78,16 @@ Global
 		{D026AF9D-DC02-4ACD-83B3-99283282A5A0}.Release|x86.ActiveCfg = Release|x86
 		{D026AF9D-DC02-4ACD-83B3-99283282A5A0}.Release|x86.Build.0 = Release|x86
 		{D026AF9D-DC02-4ACD-83B3-99283282A5A0}.Release|x86.Deploy.0 = Release|x86
+		{52C647A6-A05A-4CBD-A18A-9F1D260800F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52C647A6-A05A-4CBD-A18A-9F1D260800F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52C647A6-A05A-4CBD-A18A-9F1D260800F8}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{52C647A6-A05A-4CBD-A18A-9F1D260800F8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{52C647A6-A05A-4CBD-A18A-9F1D260800F8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52C647A6-A05A-4CBD-A18A-9F1D260800F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52C647A6-A05A-4CBD-A18A-9F1D260800F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52C647A6-A05A-4CBD-A18A-9F1D260800F8}.Release|ARM.ActiveCfg = Release|Any CPU
+		{52C647A6-A05A-4CBD-A18A-9F1D260800F8}.Release|x64.ActiveCfg = Release|Any CPU
+		{52C647A6-A05A-4CBD-A18A-9F1D260800F8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

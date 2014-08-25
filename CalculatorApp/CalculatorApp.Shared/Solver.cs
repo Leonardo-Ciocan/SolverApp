@@ -196,10 +196,31 @@ namespace CalculatorApp
             return App.Model.Settings.Degrees; 
         } }
 
-        public static Regex kNotation = new Regex(@"\d+k");
-        public static Regex FunctionNotation = new Regex(@"(sin|cos|exp|tan|ln)\((\d+|\d+.\d+)\)");
+        //public static Regex LenghtConversion = new Regex(@"(centimeter|cm|");
+        public static Regex kNotation = new Regex(@"(\d+|\d+.\d+)k");
+        public static Regex FunctionNotation = new Regex(@"(sqrt|sin|cos|exp|tan|ln)\((\d+|\d+.\d+)\)");
+
+        public static Regex PercentageNotation = new Regex(@"(-|\+)\s?(\d+|\d+.\d+)\s?%");
         public double EvaluateNested(string expr)
         {
+            expr = PercentageNotation.Replace(expr, (match) =>
+            {
+                string v = match.Value.Replace(" ","");
+                v = v.Replace("%", "");
+                double i = double.Parse(v);
+                i /= 100;
+                if (i > 0)
+                {
+                    v = "* " + (i+1).ToString();
+                }
+                else
+                {
+                    v = v.Replace("-", ""); 
+                    v = "* " + (1 - i).ToString();
+                }
+                return v;
+            });
+
             expr = kNotation.Replace(expr , (match) =>
             {
                 string v = match.Value;
@@ -230,6 +251,9 @@ namespace CalculatorApp
                     case "exp":
                         number = Math.Exp(number);
                         break;
+                    case "sqrt":
+                        number = Math.Sqrt(number);
+                        break;
                 }
                 return number.ToString();
             });
@@ -241,7 +265,7 @@ namespace CalculatorApp
                 return EvaluateAssignment(expr);
             }
             
-            if (expr.Contains("%")) expr = ConvertSyntaxSugar(expr);
+            //if (expr.Contains("%")) expr = ConvertSyntaxSugar(expr);
 
             expr = Sanitize(expr);
             int start = 0, end = 0;

@@ -212,6 +212,7 @@ namespace CalculatorApp
                 bool isNum = double.TryParse(s, out d) ||  (s.Contains("%") && double.TryParse(s.Replace("%",""),out d)) || Solver.kNotation.IsMatch(s);
                 bool var = notebook.Solver.VariableTable.ContainsKey(s);
                 bool op = s == "+" || s == "-" || s == "÷" || s == "x";//notebook.Solver.Operators.Contains(s) || notebook.Substitutions.Where((key,val) => notebook.Solver.Operators.Contains(key.Key)).Count() > 0;
+                bool func = Solver.FunctionNotation.IsMatch(s);
 
                 Run item = new Run
                 {
@@ -239,7 +240,12 @@ namespace CalculatorApp
                         notebook.variableColors[s] = Color.FromArgb(200, (byte)r.Next(0, 255), (byte)r.Next(0, 255), (byte)r.Next(0, 255));
                     }
                     item.Foreground =new SolidColorBrush( notebook.variableColors[s]);
-                } 
+                }
+                if (func)
+                {
+                    //item.FontStyle = Windows.UI.Text.FontStyle.Italic;
+                    item.Foreground = AppSettings.Themes[App.Model.Settings.ThemeIndex].FunctionText;
+                }
                 txt.Inlines.Add(item);
             }
         }

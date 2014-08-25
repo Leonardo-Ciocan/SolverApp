@@ -19,26 +19,30 @@ namespace CalculatorApp
                     Background = new SolidColorBrush(Color.FromArgb(255, 43, 43, 43)),
                     NumberText   = new SolidColorBrush(Color.FromArgb(255, 0, 86, 207)),
                     RegularText = new SolidColorBrush(Colors.White),
-                    OperatorText = new SolidColorBrush(Color.FromArgb(255,0,181,6))
+                    OperatorText = new SolidColorBrush(Color.FromArgb(255,0,181,6)),
+                    FunctionText = new SolidColorBrush(Colors.Green)
               },
             new Theme{
                     Background = new SolidColorBrush(Color.FromArgb(255, 238, 232, 213)),
                     NumberText   = new SolidColorBrush(Color.FromArgb(255, 203, 75, 22)),
                     RegularText = new SolidColorBrush(Colors.DarkGray),
-                    OperatorText = new SolidColorBrush(Color.FromArgb(255,153,0,68))
+                    OperatorText = new SolidColorBrush(Color.FromArgb(255,153,0,68)),
+                    FunctionText = new SolidColorBrush(Colors.Green)
               },
             
               new Theme{
                     Background = new SolidColorBrush(Colors.Black),
                     NumberText   = new SolidColorBrush(Color.FromArgb(255, 73, 186, 0)),
                     RegularText = new SolidColorBrush(Colors.White),
-                    OperatorText = new SolidColorBrush(Color.FromArgb(255,95,218,242))
+                    OperatorText = new SolidColorBrush(Color.FromArgb(255,95,218,242)),
+                    FunctionText = new SolidColorBrush(Colors.Green)
               },
               new Theme{
                     Background = new SolidColorBrush(Colors.White),
                     NumberText   = new SolidColorBrush(Color.FromArgb(255, 0, 86, 207)),
                     RegularText = new SolidColorBrush(Colors.Black),
-                    OperatorText = new SolidColorBrush(Color.FromArgb(255,0,181,6))
+                    OperatorText = new SolidColorBrush(Color.FromArgb(255,0,181,6)),
+                    FunctionText = new SolidColorBrush(Colors.Green)
               }
         };
 
@@ -152,6 +156,6 @@ namespace CalculatorApp
         public Brush RegularText { get; set; }
         public Brush OperatorText { get; set; }
         public Brush NumberText { get; set; }
-        public Brush PercentageText { get; set; }
+        public Brush FunctionText { get; set; }
     }
 }

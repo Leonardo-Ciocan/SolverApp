@@ -6,17 +6,127 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+	<Page.Resources>
+		<Flyout x:Key="FlyoutBase1">
+			<StackPanel Margin="12,24,12,0" Orientation="Vertical"  DataContext="{Binding Settings}">
+    		<Grid Height="79" Margin="0,12,-0.167,0">
+    			<Slider x:Name="figuresBox" VerticalAlignment="Top"  Header="Significant figures" Value="{Binding SignificantFigures, Mode=TwoWay}" LargeChange="1" Maximum="10" Minimum="1" IsThumbToolTipEnabled="True" Background="#FF464646" Foreground="#FF469F00" Margin="0,0,75,0" />
+    			<Grid HorizontalAlignment="Right" Height="79" VerticalAlignment="Top" Width="75">
+    				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding SignificantFigures}" VerticalAlignment="Center" FontSize="33.333" FontFamily="Segoe WP" Foreground="#FF464646"/>
+    			</Grid>
+
+    		</Grid>
+    		<Grid Height="79" Margin="0,12,-0.167,0">
+    			<Slider x:Name="figuresBox1" VerticalAlignment="Top"  Header="Font size" Value="{Binding FontSize, Mode=TwoWay}" LargeChange="0.5" Maximum="30" Minimum="10" IsThumbToolTipEnabled="True" Background="#FF464646" Foreground="#FF469F00" Margin="0,0,75,0" SmallChange="0.5" StepFrequency="0.5" />
+    			<Grid HorizontalAlignment="Right" Height="79" VerticalAlignment="Top" Width="75">
+    				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding FontSize}" VerticalAlignment="Center" FontSize="33.333" FontFamily="Segoe WP" Foreground="#FF464646"/>
+    			</Grid>
+
+    		</Grid>
+    		<StackPanel Margin="0,0,-0.167,0" Orientation="Vertical">
+    			<TextBlock TextWrapping="Wrap" Text="Theme" Foreground="#FFA5A5A5" FontFamily="Segoe WP"/>
+
+    			<ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
+    				ScrollViewer.VerticalScrollBarVisibility="Disabled"
+    				ScrollViewer.HorizontalScrollMode="Enabled"
+    				ScrollViewer.VerticalScrollMode="Disabled"
+    				ScrollViewer.ZoomMode="Disabled"		 x:Name="themeBox" VerticalAlignment="Top" SelectedIndex="{Binding ThemeIndex, Mode=TwoWay}" Margin="0,5,-0.167,0">
+    				<ListView.ItemTemplate>
+    					<DataTemplate>
+    						<local:ThemePreview Width="150" Height="92.917"/>
+    					</DataTemplate>
+    				</ListView.ItemTemplate>
+    				<ListView.ItemsPanel>
+    					<ItemsPanelTemplate>
+    						<StackPanel
+    							Orientation="Horizontal" />
+    					</ItemsPanelTemplate>
+    				</ListView.ItemsPanel>
+    			</ListView>
+
+    		</StackPanel>
+    		<CheckBox Content="Use degrees instead of radians" HorizontalAlignment="Stretch" VerticalAlignment="Top" IsChecked="{Binding Degrees, Mode=TwoWay}" Margin="0"/>
+
+    	</StackPanel>
+
+		</Flyout>
+	</Page.Resources>
+	<Page.BottomAppBar>
+		<CommandBar>
+			<AppBarButton Icon="Add" Label="add line" Foreground="Black" Click="addLine"/>
+			<AppBarButton Icon="Add" Label="add sheet" Click="add"/>
+			<AppBarButton Icon="Setting" Label="settings" Flyout="{StaticResource FlyoutBase1}"/>
+		</CommandBar>
+	</Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    	<ScrollViewer Margin="0" Width="400" Height="580" HorizontalAlignment="Center" VerticalAlignment="Center">
+	<Grid x:Name="root" Margin="423,0,0,0" HorizontalAlignment="Left" Width="616">
+    	<Grid.Background>
+    		<SolidColorBrush Color="#FFE7E7E7"/>
+    	</Grid.Background>
+    	<Grid x:Name="results" Width="70" HorizontalAlignment="Right" Background="#0C000000"/>
+    	<!--<ScrollViewer>
 
     		<StackPanel x:Name="holder" Orientation="Vertical" VerticalAlignment="Top">
-    			<!--<local:SyntaxLabel VerticalAlignment="Top" Text="salary = 400 + 500" Margin="0"/>
+    			<local:SyntaxLabel VerticalAlignment="Top" Text="salary = 400 + 500" Margin="0"/>
     			<local:SyntaxLabel VerticalAlignment="Top" Text="bills = 200 * 5 people" Margin="0"/>
     			<local:SyntaxLabel VerticalAlignment="Top" Text="( 15 + salary ) - bills * 5" Margin="0"/>
-				-->
+				
     		</StackPanel>
 
-    	</ScrollViewer>
+			
+    	</ScrollViewer>-->
+		<ListView ItemsSource="{Binding Lines}" x:Name="actualList" >
+			<ListView.ItemTemplate>
+				<DataTemplate><local:SyntaxLabel Width="Auto" HorizontalAlignment="Stretch"/></DataTemplate>
+			</ListView.ItemTemplate>
+
+			<ListView.ItemContainerStyle>
+    <Style TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+</ListView.ItemContainerStyle>
+
+		</ListView>
+    </Grid>
+    	<Grid HorizontalAlignment="Left" Width="400">
+    		
+    		<ListView x:Name="list">
+    			<ListView.ItemTemplate>
+    				<DataTemplate>
+    					<StackPanel Orientation="Vertical" Margin="12,20,12,0" MaxHeight="300" Background="#CC000000">
+    						<Grid Height="60" Background="#996A6A6A" VerticalAlignment="Bottom">
+    							<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Groceries" VerticalAlignment="Center" FontFamily="Segoe WP" FontSize="16" Foreground="White"/>
+    						</Grid>
+
+    						<Grid VerticalAlignment="Top">
+    							<ListView ItemsSource="{Binding Lines}"  IsEnabled="False">
+    								<ListView.ItemContainerStyle>
+    									<Style TargetType="ListViewItem">
+    										<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    									</Style>
+    								</ListView.ItemContainerStyle>
+    								<ListView.ItemTemplate>
+    									<DataTemplate>
+    										<local:SyntaxLabel  IsHitTestVisible="False" IsStaticLabel="True"/>
+				
+    									</DataTemplate>
+    								</ListView.ItemTemplate>
+    							</ListView>
+    						</Grid>
+
+    					</StackPanel>
+
+    				</DataTemplate>
+    			</ListView.ItemTemplate>
+
+    			<ListView.ItemContainerStyle>
+    				<Style TargetType="ListViewItem">
+    					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    				</Style>
+    			</ListView.ItemContainerStyle>
+    		</ListView>
+
+    	</Grid>
     </Grid>
 </Page>
