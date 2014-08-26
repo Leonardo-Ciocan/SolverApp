@@ -66,6 +66,13 @@ namespace CalculatorApp
 
         void SyntaxLabel_Loaded(object sender, RoutedEventArgs e)
         {
+
+            hiddenText.Foreground = AppSettings.Themes[App.Model.Settings.ThemeIndex].Background;
+            hiddenText.Tapped += (Action, b) =>
+            {
+                int x;
+            };
+
             if(!IsStaticLabel) Focus(FocusState.Keyboard);
 
 
@@ -125,14 +132,17 @@ namespace CalculatorApp
             
 
             var over = new SolidColorBrush(Color.FromArgb(20,0,0,0));
-            if(!IsStaticLabel) root.Background = over;
+            if (!IsStaticLabel)
+            {
+                indicator.Background = over;
+            }
             hiddenText.GotFocus += (a, b) =>
             {
-                root.Background = over;
+                indicator.Background = over;
             };
             hiddenText.LostFocus += async (a, b) =>
             {
-                root.Background = null;
+                indicator.Background = null;
                 Core.Save(notebook);
             };
 

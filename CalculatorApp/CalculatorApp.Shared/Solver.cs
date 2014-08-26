@@ -196,13 +196,39 @@ namespace CalculatorApp
             return App.Model.Settings.Degrees; 
         } }
 
-        //public static Regex LenghtConversion = new Regex(@"(centimeter|cm|");
+
+        //public static Regex CurrencyOperation = new Regex(@"\d+");
+        public static Regex currencyConversionNotation = new Regex(@"(\d+|\d+\.\d+)\W?(USD|JPY|BGN|CZK|DKK|GBP|HUF|LTN|PLN|RON|SEK|CHF|NOK|HRK|RUB)\W?(to|into|as)\W?(USD|JPY|BGN|CZK|DKK|GBP|HUF|LTN|PLN|RON|SEK|CHF|NOK|HRK|RUB)" , RegexOptions.IgnoreCase);
         public static Regex kNotation = new Regex(@"(\d+|\d+.\d+)k");
-        public static Regex FunctionNotation = new Regex(@"(sqrt|sin|cos|exp|tan|ln)\((\d+|\d+.\d+)\)");
+        public static Regex FunctionNotation = new Regex(@"(sqrt|sin|cos|exp|tan|ln)(\d+|\d+.\d+)");
 
         public static Regex PercentageNotation = new Regex(@"(-|\+)\s?(\d+|\d+.\d+)\s?%");
         public double EvaluateNested(string expr)
         {
+            expr = currencyConversionNotation.Replace(expr, (match) =>
+            {
+                string[] data = match.Value.Split(' ');
+                double value = double.Parse(data[0]);
+                string from = data[1].ToUpper();
+                string to = data[3].ToUpper();
+
+                /*if (!Core.data.ContainsKey(from))
+                {
+                    var alias = (Core.Aliases.Where((a, b) => a.Key.Contains(from)).FirstOrDefault()).Key;
+                    if (alias != null) from = (string)alias;
+                }
+
+                if (!Core.data.ContainsKey(to))
+                {
+                    var alias = (Core.Aliases.Where((a, b) => a.Key.Contains(to)).FirstOrDefault()).Key;
+                    if (alias != null) to = (string)alias;
+                }*/
+
+
+                double answer = Core.data[to]/Core.data[from] * value;
+                return answer.ToString();
+            });
+
             expr = PercentageNotation.Replace(expr, (match) =>
             {
                 string v = match.Value.Replace(" ","");
@@ -232,7 +258,19 @@ namespace CalculatorApp
             {
                 string v = match.Value;
                 v = v.Replace(")", "");
-                string[] parts = v.Split('(');
+                string[] parts = new string[2];
+                int index = 0;
+                foreach (char i in v)
+                {
+                    if (char.IsNumber(i))
+                    {
+                        parts[1] += i;
+                    }
+                    else
+                    {
+                        parts[0] += i;
+                    }
+                }
                 double number = double.Parse(parts[1]);
                 switch (parts[0])
                 {
@@ -294,6 +332,7 @@ namespace CalculatorApp
 
             return EvaluateNested(tokens.Aggregate((a, b) => a + b)); ;
         }
+
 
 
         public string Sanitize(string expr)

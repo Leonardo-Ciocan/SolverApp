@@ -50,6 +50,7 @@ namespace CalculatorApp
 
         async void SheetListPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //root.Background = AppSettings.Themes[App.Model.Settings.ThemeIndex].Background;
             list.ItemsSource = Core.Sheets;
             list.IsItemClickEnabled = true;
             list.ItemClick += (a, b) =>
