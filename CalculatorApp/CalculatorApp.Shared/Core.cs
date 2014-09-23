@@ -97,6 +97,23 @@ namespace CalculatorApp
             }
         }
 
+        public static async void DeleteSheet(Sheet s)
+        {
+            StorageFile file = await SheetsFolder.GetFileAsync(s.ID);
+            await file.DeleteAsync();
+        }
+
+        public static bool firstRun()
+        {
+            object k;
+            if (!ApplicationData.Current.RoamingSettings.Values.TryGetValue("firstRun2", out k))
+            {
+                ApplicationData.Current.RoamingSettings.Values["firstRun2"] = true;
+                return true;
+            }
+            return false;
+        }
+
         public async static void DownloadCurrencies()
         {
             string url = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
@@ -148,14 +165,21 @@ namespace CalculatorApp
         public async static void GetCurrencies()
         {
             data.Clear();
-            StorageFile xmlFile = await ApplicationData.Current.LocalFolder.GetFileAsync("currency.xml");
-            string xml = await FileIO.ReadTextAsync(xmlFile);
-            XmlDocument document = await XmlDocument.LoadFromFileAsync(xmlFile);
-            var itemss = document.GetElementsByTagName("Cube");
-            var items = from currency in  document.GetElementsByTagName("Cube") where currency.Attributes.GetNamedItem("currency") != null select currency;
-            foreach (var item in items)
+            try
             {
-                data.Add(item.Attributes.GetNamedItem("currency").NodeValue as string, double.Parse(item.Attributes.GetNamedItem("rate").NodeValue as string));
+                StorageFile xmlFile = await ApplicationData.Current.LocalFolder.GetFileAsync("currency.xml");
+                string xml = await FileIO.ReadTextAsync(xmlFile);
+                XmlDocument document = await XmlDocument.LoadFromFileAsync(xmlFile);
+                var itemss = document.GetElementsByTagName("Cube");
+                var items = from currency in document.GetElementsByTagName("Cube") where currency.Attributes.GetNamedItem("currency") != null select currency;
+                foreach (var item in items)
+                {
+                    data.Add(item.Attributes.GetNamedItem("currency").NodeValue as string, double.Parse(item.Attributes.GetNamedItem("rate").NodeValue as string));
+                }
+            }
+            catch
+            {
+                DownloadCurrencies();
             }
         }
     }

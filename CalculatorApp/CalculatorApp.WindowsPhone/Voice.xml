@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+
+  <CommandSet xml:lang="en-us" Name="examplevcd">
+    <CommandPrefix>Compute</CommandPrefix>
+    <Example>Compute calculate 1200 dollars + 10.5%</Example>
+
+    <Command Name="showRecognition">
+      <Example>Compute 5 + 5</Example>
+      <ListenFor> {dictatedSearchTerms}</ListenFor>
+      <Feedback>OK I'm calculating that</Feedback>
+      <Navigate/>
+    </Command>
+
+    
+    <PhraseTopic Label="dictatedSearchTerms" Scenario="Search">
+      <Subject> Calculation </Subject>
+    </PhraseTopic>
+
+  </CommandSet>
+
+  <!-- Other CommandSets for other languages -->
+
+</VoiceCommands>

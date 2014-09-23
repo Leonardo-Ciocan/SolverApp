@@ -40,7 +40,7 @@ namespace CalculatorApp
         private void addLine(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             
-            //i++;
+            //i++;  
             //holder.Children.Add(new SyntaxLabel(i));
             //(holder.Children.Last() as SyntaxLabel).Focus(FocusState.Keyboard);
             App.Model.OpenNotebook.Lines.Add(new Line { LineNumber = App.Model.OpenNotebook.Lines.Count + 1, SheetID = notebook.ID });
@@ -50,14 +50,17 @@ namespace CalculatorApp
 
         async void SheetListPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //root.Background = AppSettings.Themes[App.Model.Settings.ThemeIndex].Background;
+            root.Background = AppSettings.Themes[App.Model.Settings.ThemeIndex].Background;
             list.ItemsSource = Core.Sheets;
             list.IsItemClickEnabled = true;
             list.ItemClick += (a, b) =>
             {
+                btnAddLine.IsEnabled = true;
+                btnSubs.IsEnabled = true;
                 notebook = b.ClickedItem as Sheet;
                 App.Model.OpenNotebook = b.ClickedItem as Sheet;
                 actualList.DataContext = App.Model.OpenNotebook;
+                BottomAppBar.DataContext = b.ClickedItem;
             };
         }
 
@@ -65,6 +68,12 @@ namespace CalculatorApp
         private void add(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             Core.Sheets.Add(new Sheet { });
+        }
+
+        private void addSub(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            
+            App.Model.OpenNotebook.Substitutions.Add(new Substitution("", ""));
         }
     }
 }

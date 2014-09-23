@@ -26,7 +26,18 @@ namespace CalculatorApp
         public SettingsPage()
         {
             this.InitializeComponent();
+            Loaded += SettingsPage_Loaded;
+        }
 
+
+
+        void SettingsPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            btnFeedback.Tapped += async (About, b) =>
+            {
+                var mailto = new Uri("mailto:?to=leonardo.ciocan@outlook.com&subject=Computally feedback");
+                await Windows.System.Launcher.LaunchUriAsync(mailto);
+            };
         }
 
         

@@ -8,9 +8,19 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+	<Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
     <Grid>
     	<Grid.Background>
-    		<SolidColorBrush Color="{ThemeResource PhoneChromeColor}"/>
+    		<SolidColorBrush Color="#FF426FA0"/>
     	</Grid.Background>
     	<StackPanel Margin="12,24,12,0" Orientation="Vertical">
     		<Grid Height="79" Margin="0,12,-0.167,0">
@@ -28,7 +38,7 @@
 
     		</Grid>
     		<StackPanel Margin="0,0,-0.167,0" Orientation="Vertical">
-    			<TextBlock TextWrapping="Wrap" Text="Theme" FontSize="{StaticResource TextStyleMediumFontSize}" Foreground="#FFA5A5A5" FontFamily="Segoe WP"/>
+    			<TextBlock TextWrapping="Wrap" Text="Theme" FontSize="{StaticResource TextStyleMediumFontSize}" Foreground="#FFB3C5D9" FontFamily="Segoe WP"/>
 
     			<ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
     				ScrollViewer.VerticalScrollBarVisibility="Disabled"
@@ -50,8 +60,9 @@
 
     		</StackPanel>
     		<CheckBox Content="Use degrees instead of radians" HorizontalAlignment="Stretch" VerticalAlignment="Top" IsChecked="{Binding Degrees, Mode=TwoWay}" Margin="0"/>
+            <Button x:Name="btnFeedback" Content="&#xE119; Email feedback" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,-0.333,20" Background="#FF00A3FF" BorderBrush="#FFBBCCFF" BorderThickness="1" Foreground="White" FontWeight="Normal" FontFamily="Segoe UI Symbol" FontSize="20"/>
 
-    	</StackPanel>
+        </StackPanel>
 
     </Grid>
 </Page>

@@ -273,8 +273,10 @@ namespace CalculatorApp
             if (d == 0)
                 return 0;
 
-            double scale = Math.Pow(10, Math.Floor(Math.Log10(Math.Abs(d))) + 1);
-            return scale * Math.Round(d / scale, digits);
+
+            //double scale = Math.Pow(10, Math.Floor(Math.Log10(Math.Abs(d))) + 1);
+
+            return Math.Round(d, digits);
         }
     }
 }

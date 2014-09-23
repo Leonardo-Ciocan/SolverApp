@@ -7,23 +7,78 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Foreground="{x:Null}">
+	
+	<Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+	
 	<Page.BottomAppBar>
 		<CommandBar x:Name="appbar" Background="#FFE1E1E1" Foreground="#FF303030" BorderThickness="0,1,0,0">
 			<CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="btnReview" Label="review in store" Click="review"/>
 				<AppBarButton Label="substitutions" Click="toSubstitutions"/>
+				<AppBarButton Label="randomize variable colors" Click="randomize"/>
 				<AppBarButton Label="settings" Click="toSettings"/>
 			</CommandBar.SecondaryCommands>
 			<AppBarButton Icon="Add" Label="add line" Foreground="Black" Click="addLine"/>
-			<AppBarToggleButton Icon="Bullets" Label="reorder" Click="ReorderChecked"/>
+			<AppBarToggleButton x:Name="btnPin" Icon="Pin" Label="reorder" Click="pin"/>
 			<AppBarButton Icon="Microphone" Label="speak" Click="initSpeeach"/>
 		</CommandBar>
 	</Page.BottomAppBar>
 
     <Grid x:Name="root">
-    	<Grid.Background>
-    		<SolidColorBrush Color="#FFE7E7E7"/>
-    	</Grid.Background>
+	<Grid x:Name="tile" Width="310" Height="150" Margin="45,-200,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#330071BC">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+		<Grid Height="40" VerticalAlignment="Bottom" Background="#FF0071BC" Grid.ColumnSpan="3">
+			<Image HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="40" Source="Assets/Logo.png" Margin="0"/>
+			<TextBlock HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Center" Foreground="White" FontSize="26.667" FontFamily="Segoe WP" FontWeight="Light"/>
+		</Grid>
+		<ListView ItemsSource="{Binding Lines}" Background="{Binding SelectedTheme.Background}" Grid.ColumnSpan="3" Margin="0,0,0,40">
+			<ListView.ItemContainerStyle>
+				<Style TargetType="ListViewItem">
+					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+				</Style>
+			</ListView.ItemContainerStyle>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<local:SyntaxLabel  IsHitTestVisible="False" IsStaticLabel="True"/>
+				
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		<Rectangle Grid.ColumnSpan="3" Stroke="#FF0071BC"/>
+
+        </Grid>
+        <Grid x:Name="tileSmall" Width="150" Height="150" Margin="45,-380,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FF0071BC">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+        	<Rectangle Grid.ColumnSpan="3" Stroke="#FF0071BC" Margin="0"/>
+        	<Image HorizontalAlignment="Right" Height="110" VerticalAlignment="Top" Width="146" Source="Assets/Logo.png" Grid.ColumnSpan="3" Margin="0,40,0,0"/>
+        	<Grid Height="40" VerticalAlignment="Bottom" Background="#FF0071BC" Grid.ColumnSpan="3" Margin="0,0,0,110">
+        		<TextBlock HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Center" Foreground="White" FontSize="26.667" FontFamily="Segoe WP" FontWeight="Light"/>
+        	</Grid>
+        </Grid>
+    	
     	<Grid x:Name="results" Width="70" HorizontalAlignment="Right" Background="#0C000000"/>
+        <MediaElement Name="mediaElement"></MediaElement>
     	<!--<ScrollViewer>
 
     		<StackPanel x:Name="holder" Orientation="Vertical" VerticalAlignment="Top">
@@ -47,5 +102,9 @@
 </ListView.ItemContainerStyle>
 
 		</ListView>
+
+        <Grid.Background>
+            <SolidColorBrush Color="#FFE7E7E7"/>
+        </Grid.Background>
     </Grid>
 </Page>

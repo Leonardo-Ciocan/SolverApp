@@ -85,6 +85,15 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\consolas.ttf" />
+    <Content Include="Assets\equal-01.png" />
+    <Content Include="Assets\fx-01.png" />
+    <Content Include="Assets\k-01.png" />
+    <Content Include="Assets\perc-01.png" />
+    <Content Include="Assets\sub-01.png" />
+    <Content Include="Assets\words-01.png" />
+    <Content Include="Voice.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Package.StoreAssociation.xml" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -102,6 +111,9 @@
     <Compile Include="SubstitutionsPage.xaml.cs">
       <DependentUpon>SubstitutionsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tutorial.xaml.cs">
+      <DependentUpon>Tutorial.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -114,7 +126,6 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
-    <Content Include="Assets\SplashScreen.scale-240 - Copy.png" />
     <Content Include="Assets\SplashScreen.scale-240.png" />
     <Content Include="Assets\Square71x71Logo.scale-240.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
@@ -138,6 +149,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubstitutionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Tutorial.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

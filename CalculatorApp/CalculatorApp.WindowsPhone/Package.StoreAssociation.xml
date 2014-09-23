@@ -184,9 +184,9 @@
     <Language Code="vi-vn" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>27721LeonardoCiocan.SolveX</MainPackageIdentityName>
+    <MainPackageIdentityName>27721LeonardoCiocan.Computally</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>SolveX</ReservedName>
+      <ReservedName>Computally</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
@@ -197,13 +197,14 @@
     <MainPackageIdentityName>27721LeonardoCiocan.MyProgress8.1</MainPackageIdentityName>
     <MainPackageIdentityName>27721LeonardoCiocan.QuizMaker</MainPackageIdentityName>
     <MainPackageIdentityName>27721LeonardoCiocan.Skim</MainPackageIdentityName>
+    <MainPackageIdentityName>27721LeonardoCiocan.SolveX</MainPackageIdentityName>
     <MainPackageIdentityName>27721LeonardoCiocan.SpeedRead</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=e6852b54-2a89-463d-8296-819dff7df4db">
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=40914684-454e-4765-99d5-4e17d91a6424">
     <PackageInfo>
       <OsMinVersion>6.3.0.0</OsMinVersion>
       <PackageArchitecture>neutral</PackageArchitecture>
-      <PackageMaxArchitectureVersion>1.1.0.3</PackageMaxArchitectureVersion>
+      <PackageMaxArchitectureVersion>1.1.0.0</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>

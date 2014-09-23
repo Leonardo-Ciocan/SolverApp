@@ -13,8 +13,15 @@ namespace CalculatorApp
     public class AppSettings :INotifyPropertyChanged
     {
 
-      public static List<Theme> Themes = new List<Theme>
+      public static List<Theme> _themes = new List<Theme>
         {
+            new Theme{
+                    Background = new SolidColorBrush(Color.FromArgb(255, 214, 214, 214)),
+                    NumberText   = new SolidColorBrush(Color.FromArgb(255, 0, 157, 255)),
+                    RegularText = new SolidColorBrush(Colors.Black),
+                    OperatorText = new SolidColorBrush(Color.FromArgb(255,255,98,0)),
+                    FunctionText = new SolidColorBrush(Color.FromArgb(255,132,0,255))
+              },
             new Theme{
                     Background = new SolidColorBrush(Color.FromArgb(255, 43, 43, 43)),
                     NumberText   = new SolidColorBrush(Color.FromArgb(255, 0, 86, 207)),
@@ -45,6 +52,8 @@ namespace CalculatorApp
                     FunctionText = new SolidColorBrush(Colors.Green)
               }
         };
+
+      public static List<Theme> Themes { get { return _themes; } }
 
         public int SignificantFigures
         {
@@ -111,7 +120,13 @@ namespace CalculatorApp
 
                 ApplicationData.Current.RoamingSettings.Values["ThemeIndex"] = value;
                 OnPropertyChanged();
+                OnPropertyChanged("SelectedTheme");
             }
+        }
+
+        public Theme SelectedTheme
+        {
+            get { return Themes[ThemeIndex]; }
         }
 
         public bool Degrees

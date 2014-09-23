@@ -8,16 +8,26 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.BottomAppBar>
-		<CommandBar>
+		<CommandBar Foreground="White" Background="#FF0094DE">
 			<AppBarButton Icon="Add" Label="add" Click="add"/>
 		</CommandBar>
 	</Page.BottomAppBar>
 
+	<Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
     <Grid>
     	<Grid.Background>
-    		<SolidColorBrush Color="{ThemeResource PhoneChromeColor}"/>
+    		<SolidColorBrush Color="#FF426FA0"/>
     	</Grid.Background>
-    	<ListView ItemsSource="{Binding OpenNotebook.Substitutions}" Margin="0">
+    	<ListView ItemsSource="{Binding OpenNotebook.Substitutions}" Margin="0,103,0,0">
     		<ListView.ItemTemplate>
     			<DataTemplate><local:SubstitutionControl Width="Auto" HorizontalAlignment="Stretch"/></DataTemplate>
     		</ListView.ItemTemplate>
@@ -29,6 +39,13 @@
     		</ListView.ItemContainerStyle>
 
     	</ListView>
+    	<TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Substitutions" VerticalAlignment="Top" Foreground="White" FontSize="40" FontFamily="Segoe WP" FontWeight="Light"/>
+    	<TextBlock Margin="10,63,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="13.333" FontFamily="Segoe WP">
+    		<Run Text="When you write an expressio"/>
+    		<Run Text="n on the left"/>
+    		<Run Text=" and"/>
+    		<Run Text=" it will get replaced with the one on the right"/>
+    	</TextBlock>
 		
     </Grid>
 </Page>

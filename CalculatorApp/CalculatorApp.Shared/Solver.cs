@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -205,6 +206,10 @@ namespace CalculatorApp
         public static Regex PercentageNotation = new Regex(@"(-|\+)\s?(\d+|\d+.\d+)\s?%");
         public double EvaluateNested(string expr)
         {
+           // Debug.WriteLine(expr + " eval--:S\n");
+
+            if (expr.Count((x) => x == '(') != expr.Count((x) => x == ')'))
+                return 0.0;
             expr = currencyConversionNotation.Replace(expr, (match) =>
             {
                 string[] data = match.Value.Split(' ');
@@ -242,7 +247,7 @@ namespace CalculatorApp
                 else
                 {
                     v = v.Replace("-", ""); 
-                    v = "* " + (1 - i).ToString();
+                    v = "* " + (1 + i).ToString();
                 }
                 return v;
             });
@@ -253,6 +258,8 @@ namespace CalculatorApp
                 v = v.Replace("k", "");
                 return (double.Parse(v) * 1000).ToString();
             });
+
+            int xx;
 
             expr = FunctionNotation.Replace(expr, (match) =>
             {
@@ -325,8 +332,11 @@ namespace CalculatorApp
                 nestedExpr += tokens[x];
             }
             double nestedResult = Evaluate(nestedExpr);
-            tokens.RemoveRange(start, end - start +1);
-            tokens.Insert(start, nestedResult.ToString());
+            if (end != 0)
+            {
+                tokens.RemoveRange(start, end - start + 1);
+                tokens.Insert(start, nestedResult.ToString());
+            }
 
 
 
@@ -355,6 +365,7 @@ namespace CalculatorApp
             {
                 string value = tokens[x - removed].Replace(" ", "");
                 double val;
+                
                 if (!double.TryParse(value , out val)
                     && !VariableTable.ContainsKey(value)
                     && !Operators.Contains(value)

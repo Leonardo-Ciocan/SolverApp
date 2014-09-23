@@ -20,6 +20,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Notebook.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SheetPreview.xaml.cs">
+      <DependentUpon>SheetPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Solver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SubstitutionControl.xaml.cs">
       <DependentUpon>SubstitutionControl.xaml</DependentUpon>
@@ -30,8 +33,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)ThemePreview.xaml.cs">
       <DependentUpon>ThemePreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)TileManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)SheetPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)SubstitutionControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

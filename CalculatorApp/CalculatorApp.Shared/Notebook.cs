@@ -16,7 +16,8 @@ namespace CalculatorApp
         public Sheet()
         {
             Lines = new ObservableCollection<Line>();
-            Substitutions = new ObservableCollection<Substitution>
+            Substitutions = new ObservableCollection<Substitution>();
+            InternalSubstitutions = new ObservableCollection<Substitution>
         {
             new Substitution("pi","π"),
             new Substitution("lambda" , "λ"),
@@ -34,7 +35,7 @@ namespace CalculatorApp
             variableColors = new Dictionary<string, Color>();
         }
 
-        public string _name = "";
+        public string _name = "New sheet";
         public string Name { get { return _name; } set { _name = value; OnPropertyChanged(); } }
 
         public string _id = Guid.NewGuid().ToString();
@@ -46,6 +47,9 @@ namespace CalculatorApp
 
         };
 
+
+        [Newtonsoft.Json.JsonIgnore]
+        public Theme SelectedTheme { get { return App.Model.Settings.SelectedTheme; } }
 
         public Dictionary<string, Color> variableColors { get; set; }
 
@@ -79,9 +83,16 @@ namespace CalculatorApp
             get;
             set;
         }
+        [Newtonsoft.Json.JsonIgnore]
+        public ObservableCollection<Substitution> InternalSubstitutions
+        {
+            get;
+            set;
+        }
 
         public void EvaluateAll()
         {
+            OnPropertyChanged("SelectedTheme");
             Solver.VariableTable.Clear();
             foreach (Line l in Lines)
             {

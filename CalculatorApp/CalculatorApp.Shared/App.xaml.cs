@@ -9,7 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Controls.Primitives;  
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -58,6 +58,12 @@ namespace CalculatorApp
 
             Frame rootFrame = Window.Current.Content as Frame;
 
+            if (((string)e.Arguments) as string != "")
+            {
+                Sheet sh = Core.Sheets.Where(x => x.ID.StartsWith(e.Arguments as string)).First();
+                rootFrame.Navigate(typeof(MainPage), sh);
+            }
+
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -98,8 +104,15 @@ namespace CalculatorApp
                 // configuring the new page by passing required information as a navigation
                 // parameter
                 var page = typeof(MainPage);
+                
 #if WINDOWS_PHONE_APP
                 page = typeof(SheetListPage);
+                if (Core.firstRun())
+                {
+                    page = typeof(Tutorial);
+                }
+
+                
 #endif
 
                 if (!rootFrame.Navigate(page, e.Arguments))
@@ -147,5 +160,31 @@ namespace CalculatorApp
             // TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+        
+#if WINDOWS_PHONE_APP
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            // Was the app activated by a voice command?
+            if (args.Kind == Windows.ApplicationModel.Activation.ActivationKind.VoiceCommand)
+            {
+                var commandArgs = args as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;
+                Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
+
+                // If so, get the name of the voice command, the actual text spoken, and the value of Command/Navigate@Target.
+                string voiceCommandName = speechRecognitionResult.RulePath[0];
+                string textSpoken = speechRecognitionResult.Text;
+                string navigationTarget = speechRecognitionResult.SemanticInterpretation.Properties["NavigationTarget"][0];
+
+                //Solver solver = new Solver();
+                Sheet s = new Sheet();
+                s.Lines.Add(new Line{ Expression = textSpoken});
+                double result = (s.Solver).EvaluateNested(textSpoken);
+                (Window.Current.Content as Frame).Navigate( typeof(MainPage ), s);
+                        
+
+            }
+        }
+#endif
     }
 }

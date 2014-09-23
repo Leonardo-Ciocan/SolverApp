@@ -8,62 +8,88 @@
     mc:Ignorable="d">
 	<Page.Resources>
 		<Flyout x:Key="FlyoutBase1">
-			<StackPanel Margin="12,24,12,0" Orientation="Vertical"  DataContext="{Binding Settings}">
-    		<Grid Height="79" Margin="0,12,-0.167,0">
-    			<Slider x:Name="figuresBox" VerticalAlignment="Top"  Header="Significant figures" Value="{Binding SignificantFigures, Mode=TwoWay}" LargeChange="1" Maximum="10" Minimum="1" IsThumbToolTipEnabled="True" Background="#FF464646" Foreground="#FF469F00" Margin="0,0,75,0" />
-    			<Grid HorizontalAlignment="Right" Height="79" VerticalAlignment="Top" Width="75">
-    				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding SignificantFigures}" VerticalAlignment="Center" FontSize="33.333" FontFamily="Segoe WP" Foreground="#FF464646"/>
-    			</Grid>
+			<Grid Background="#FF426FA0" Height="580" Width="400">
+				<ListView ItemsSource="{Binding Substitutions}" Margin="0,103,0,0">
+    		<ListView.ItemTemplate>
+    			<DataTemplate><local:SubstitutionControl Width="Auto" HorizontalAlignment="Stretch"/></DataTemplate>
+    		</ListView.ItemTemplate>
 
-    		</Grid>
-    		<Grid Height="79" Margin="0,12,-0.167,0">
-    			<Slider x:Name="figuresBox1" VerticalAlignment="Top"  Header="Font size" Value="{Binding FontSize, Mode=TwoWay}" LargeChange="0.5" Maximum="30" Minimum="10" IsThumbToolTipEnabled="True" Background="#FF464646" Foreground="#FF469F00" Margin="0,0,75,0" SmallChange="0.5" StepFrequency="0.5" />
-    			<Grid HorizontalAlignment="Right" Height="79" VerticalAlignment="Top" Width="75">
-    				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding FontSize}" VerticalAlignment="Center" FontSize="33.333" FontFamily="Segoe WP" Foreground="#FF464646"/>
-    			</Grid>
+    		<ListView.ItemContainerStyle>
+    			<Style TargetType="ListViewItem">
+    				<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    			</Style>
+    		</ListView.ItemContainerStyle>
 
-    		</Grid>
-    		<StackPanel Margin="0,0,-0.167,0" Orientation="Vertical">
-    			<TextBlock TextWrapping="Wrap" Text="Theme" Foreground="#FFA5A5A5" FontFamily="Segoe WP"/>
-
-    			<ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
-    				ScrollViewer.VerticalScrollBarVisibility="Disabled"
-    				ScrollViewer.HorizontalScrollMode="Enabled"
-    				ScrollViewer.VerticalScrollMode="Disabled"
-    				ScrollViewer.ZoomMode="Disabled"		 x:Name="themeBox" VerticalAlignment="Top" SelectedIndex="{Binding ThemeIndex, Mode=TwoWay}" Margin="0,5,-0.167,0">
-    				<ListView.ItemTemplate>
-    					<DataTemplate>
-    						<local:ThemePreview Width="150" Height="92.917"/>
-    					</DataTemplate>
-    				</ListView.ItemTemplate>
-    				<ListView.ItemsPanel>
-    					<ItemsPanelTemplate>
-    						<StackPanel
-    							Orientation="Horizontal" />
-    					</ItemsPanelTemplate>
-    				</ListView.ItemsPanel>
-    			</ListView>
-
-    		</StackPanel>
-    		<CheckBox Content="Use degrees instead of radians" HorizontalAlignment="Stretch" VerticalAlignment="Top" IsChecked="{Binding Degrees, Mode=TwoWay}" Margin="0"/>
-
-    	</StackPanel>
-
+    	</ListView>
+				<TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Substitutions" VerticalAlignment="Top" Foreground="White" FontSize="40" FontFamily="Segoe WP" FontWeight="Light"/>
+				<TextBlock Margin="10,63,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="13.333" FontFamily="Segoe WP">
+					<Run Text="When you write an expressio"/>
+					<Run Text="n on the left"/>
+					<Run Text=" and"/>
+					<Run Text=" it will get replaced with the one on the right"/>
+				</TextBlock>
+				<AppBarButton Icon="Add" Label="" Foreground="White" BorderBrush="White" Margin="0,0,0,-24" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="addSub"/>
+		
+			</Grid>
 		</Flyout>
+		<Style x:Key="nohover" TargetType="ListView">
+			<Setter Property="IsTabStop" Value="False"/>
+			<Setter Property="TabNavigation" Value="Once"/>
+			<Setter Property="IsSwipeEnabled" Value="True"/>
+			<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+			<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+			<Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled"/>
+			<Setter Property="ScrollViewer.IsHorizontalRailEnabled" Value="False"/>
+			<Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+			<Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="False"/>
+			<Setter Property="ScrollViewer.ZoomMode" Value="Disabled"/>
+			<Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
+			<Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True"/>
+			<Setter Property="ItemContainerTransitions">
+				<Setter.Value>
+					<TransitionCollection>
+						<AddDeleteThemeTransition/>
+						<ContentThemeTransition/>
+						<ReorderThemeTransition/>
+						<EntranceThemeTransition IsStaggeringEnabled="False"/>
+					</TransitionCollection>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="ItemsPanel">
+				<Setter.Value>
+					<ItemsPanelTemplate>
+						<ItemsStackPanel Orientation="Vertical"/>
+					</ItemsPanelTemplate>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListView">
+						<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="transparent">
+							<ScrollViewer x:Name="ScrollViewer" AutomationProperties.AccessibilityView="Raw" BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsHorizontalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsHorizontalScrollChainingEnabled}" IsVerticalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsVerticalScrollChainingEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" TabNavigation="{TemplateBinding TabNavigation}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}">
+								<ItemsPresenter FooterTransitions="{TemplateBinding FooterTransitions}" FooterTemplate="{TemplateBinding FooterTemplate}" Footer="{TemplateBinding Footer}" HeaderTemplate="{TemplateBinding HeaderTemplate}" Header="{TemplateBinding Header}" HeaderTransitions="{TemplateBinding HeaderTransitions}" Padding="{TemplateBinding Padding}"/>
+							</ScrollViewer>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush" Color="Red"></SolidColorBrush>
+
 	</Page.Resources>
 	<Page.BottomAppBar>
-		<CommandBar>
-			<AppBarButton Icon="Add" Label="add line" Foreground="Black" Click="addLine"/>
+		<CommandBar Background="#FF005A95">
+			<AppBarButton x:Name="btnAddLine" Icon="Add" Label="add line" Foreground="White" Click="addLine" IsEnabled="False"/>
 			<AppBarButton Icon="Add" Label="add sheet" Click="add"/>
 			<AppBarButton Icon="Setting" Label="settings" Flyout="{StaticResource FlyoutBase1}"/>
+			<AppBarButton x:Name="btnSubs" Icon="Shuffle" Label="substitutions" Flyout="{StaticResource FlyoutBase1}" IsEnabled="False"/>
 		</CommandBar>
 	</Page.BottomAppBar>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-	<Grid x:Name="root" Margin="423,0,0,0" HorizontalAlignment="Left" Width="616">
-    	<Grid.Background>
-    		<SolidColorBrush Color="#FFE7E7E7"/>
-    	</Grid.Background>
+    <Grid Background="#FF0071BC">
+	<Image Margin="0,0,-245,-88" Source="Assets/SplashScreen.scale-100.png" Stretch="Fill" Height="300" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="620"/>
+	<Grid x:Name="root" Margin="423,0,0,0" HorizontalAlignment="Left" Width="616" Background="#FFE7E7E7">
     	<Grid x:Name="results" Width="70" HorizontalAlignment="Right" Background="#0C000000"/>
     	<!--<ScrollViewer>
 
@@ -76,7 +102,7 @@
 
 			
     	</ScrollViewer>-->
-		<ListView ItemsSource="{Binding Lines}" x:Name="actualList" >
+		<ListView ItemsSource="{Binding Lines}"  Style="{StaticResource nohover}" x:Name="actualList" >
 			<ListView.ItemTemplate>
 				<DataTemplate><local:SyntaxLabel Width="Auto" HorizontalAlignment="Stretch"/></DataTemplate>
 			</ListView.ItemTemplate>
@@ -89,34 +115,12 @@
 
 		</ListView>
     </Grid>
-    	<Grid HorizontalAlignment="Left" Width="400">
+    	<Grid HorizontalAlignment="Left" Width="400" Margin="0,94,0,0">
     		
-    		<ListView x:Name="list">
+    		<ListView x:Name="list" SelectionMode="None" Style="{StaticResource nohover}" Background="#FF426FA0">
     			<ListView.ItemTemplate>
     				<DataTemplate>
-    					<StackPanel Orientation="Vertical" Margin="12,20,12,0" MaxHeight="300" Background="#CC000000">
-    						<Grid Height="60" Background="#996A6A6A" VerticalAlignment="Bottom">
-    							<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Groceries" VerticalAlignment="Center" FontFamily="Segoe WP" FontSize="16" Foreground="White"/>
-    						</Grid>
-
-    						<Grid VerticalAlignment="Top">
-    							<ListView ItemsSource="{Binding Lines}"  IsEnabled="False">
-    								<ListView.ItemContainerStyle>
-    									<Style TargetType="ListViewItem">
-    										<Setter Property="HorizontalContentAlignment" Value="Stretch" />
-    									</Style>
-    								</ListView.ItemContainerStyle>
-    								<ListView.ItemTemplate>
-    									<DataTemplate>
-    										<local:SyntaxLabel  IsHitTestVisible="False" IsStaticLabel="True"/>
-				
-    									</DataTemplate>
-    								</ListView.ItemTemplate>
-    							</ListView>
-    						</Grid>
-
-    					</StackPanel>
-
+    					<local:SheetPreview/>
     				</DataTemplate>
     			</ListView.ItemTemplate>
 
@@ -128,5 +132,19 @@
     		</ListView>
 
     	</Grid>
+    	<StackPanel Margin="0,0,966,0" Orientation="Vertical" VerticalAlignment="Top">
+    		<StackPanel.ChildrenTransitions>
+    			<TransitionCollection>
+    				<EntranceThemeTransition FromVerticalOffset="40" FromHorizontalOffset="0"/>
+    			</TransitionCollection>
+    		</StackPanel.ChildrenTransitions>
+    		<TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="33,0,32,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="40" FontFamily="Segoe WP" FontWeight="Light" Text="Sheets"/>
+    		<TextBlock x:Name="textBlock1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="A sheet is a list of calculations" VerticalAlignment="Top" Foreground="White" FontSize="13.333" FontFamily="Segoe WP">
+    			<TextBlock.Projection>
+    				<PlaneProjection/>
+    			</TextBlock.Projection>
+    		</TextBlock>
+
+    	</StackPanel>
     </Grid>
 </Page>

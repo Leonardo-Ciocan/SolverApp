@@ -38,7 +38,7 @@ namespace CalculatorApp
 
         private void add(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            App.Model.OpenNotebook.Substitutions.Add(new Substitution (  "",  "" ));
+            App.Model.OpenNotebook.Substitutions.Add(new Substitution ( "",  "" ));
         }
     }
 }
