@@ -1,0 +1,97 @@
+﻿<Page
+    x:Class="CalculatorApp.SheetListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CalculatorApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Foreground="{x:Null}">
+	<Page.Resources>
+		<Storyboard x:Name="over">
+			<DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="20">
+					<EasingDoubleKeyFrame.EasingFunction>
+						<ExponentialEase EasingMode="EaseOut"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimation Duration="0:0:0.5" To="90" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="textBlock1" d:IsOptimized="True">
+				<DoubleAnimation.EasingFunction>
+					<ExponentialEase EasingMode="EaseOut"/>
+				</DoubleAnimation.EasingFunction>
+			</DoubleAnimation>
+		</Storyboard>
+		<Storyboard x:Name="back">
+			<DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="40">
+					<EasingDoubleKeyFrame.EasingFunction>
+						<ExponentialEase EasingMode="EaseOut"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="textBlock1" d:IsOptimized="True">
+				<DoubleAnimation.EasingFunction>
+					<ExponentialEase EasingMode="EaseOut"/>
+				</DoubleAnimation.EasingFunction>
+			</DoubleAnimation>
+		</Storyboard>
+	</Page.Resources>
+	<Page.BottomAppBar>
+		<CommandBar Background="#E50072AB" Foreground="White">
+			<CommandBar.SecondaryCommands>
+				<AppBarButton Label="need help?" Click="gototutorial"/>
+			</CommandBar.SecondaryCommands>
+			<AppBarButton Icon="Add" Label="add sheet" Click="add"/>
+		</CommandBar>
+	</Page.BottomAppBar>
+
+	<Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+    	<Grid.Background>
+    		<SolidColorBrush Color="#FF426FA0"/>
+    	</Grid.Background>
+    	<Image Source="Assets/SplashScreen.png" Stretch="UniformToFill" Opacity="0.1"/>
+    	<Rectangle Fill="#B2426FA0" HorizontalAlignment="Left" Height="94" VerticalAlignment="Top" Width="400" StrokeThickness="0"/>
+    	<StackPanel Margin="0" Orientation="Vertical" VerticalAlignment="Top">
+    		<StackPanel.ChildrenTransitions>
+    			<TransitionCollection>
+    				<EntranceThemeTransition FromVerticalOffset="40" FromHorizontalOffset="0"/>
+    			</TransitionCollection>
+    		</StackPanel.ChildrenTransitions>
+    		<TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="33,0,32,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="40" FontFamily="Segoe WP" FontWeight="Light" Text="Sheets"/>
+    		<TextBlock x:Name="textBlock1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="A sheet is a list of calculations" VerticalAlignment="Top" Foreground="White" FontSize="13.333" FontFamily="Segoe WP">
+    			<TextBlock.Projection>
+    				<PlaneProjection/>
+    			</TextBlock.Projection>
+    		</TextBlock>
+
+    	</StackPanel>
+    	<ListView x:Name="list" Margin="0,0,0,-61">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<local:SheetPreview/>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+			<ListView.Header>
+			 <Grid Height="100"/>
+			</ListView.Header>
+			<ListView.ItemContainerStyle>
+			
+    <Style TargetType="ListViewItem">
+    	<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+</ListView.ItemContainerStyle>
+		</ListView>
+
+    </Grid>
+</Page>

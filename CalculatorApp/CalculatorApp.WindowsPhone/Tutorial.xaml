@@ -1,0 +1,129 @@
+﻿<Page
+    x:Class="CalculatorApp.Tutorial"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CalculatorApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer Background="White">
+		<StackPanel Orientation="Vertical" VerticalAlignment="Top">
+			<TextBlock TextWrapping="Wrap" Text="Tutorial" Foreground="#FF0073BF" HorizontalAlignment="Center" FontSize="60" FontFamily="Segoe WP" FontWeight="Light"/>
+			<StackPanel Orientation="Vertical">
+				<Rectangle Fill="#FFEBEBEB" Height="2" Stroke="Black" StrokeThickness="0"/>
+
+				<Image HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="70" Source="Assets/equal-01.png" Margin="0,10,0,0"/>
+
+				<TextBlock TextWrapping="Wrap" Text="Variables" Foreground="#FFC1272D" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="40" FontWeight="ExtraLight" Margin="0"/>
+				<TextBlock TextWrapping="Wrap" Foreground="#FFC1272D" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="26.667" FontWeight="ExtraLight" TextAlignment="Center" Margin="0">
+					<Run Foreground="#FF008208" Text="salary "/>
+					<Run Foreground="#FFE38300" Text="= "/>
+					<Run Foreground="#FF8427C1" Text="2500"/>
+					<LineBreak/>
+					<Run Foreground="#FF0030C8" Text="bills "/>
+					<Run Foreground="#FFE38300" Text="= "/>
+					<Run Foreground="#FF8427C1" Text="335"/>
+					<LineBreak/>
+					<Run Foreground="#FF008759" Text="salary "/>
+					<Run Foreground="#FFE38300" Text="- "/>
+					<Run Foreground="#FF0A46CF" Text="bills "/>
+					<Run Foreground="#FFE38300" Text="* "/>
+					<Run Foreground="#FF8427C1" Text="3"/>
+				</TextBlock>
+				<TextBlock TextWrapping="Wrap" Text="You can use the equal sign to make  vearibles , each variable gets its own unique color" Foreground="#FFC1272D" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="20" FontWeight="ExtraLight" Margin="17,0" TextAlignment="Center"/>
+				<Rectangle Fill="#FFEBEBEB" Height="2" Stroke="Black" StrokeThickness="0"/>
+			</StackPanel>
+			<StackPanel Orientation="Vertical">
+				<Image HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="70" Source="Assets/sub-01.png" Margin="0,10,0,0"/>
+
+				<TextBlock TextWrapping="Wrap" Text="Substitutions" Foreground="#FFF79522" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="40" FontWeight="ExtraLight" Margin="0"/>
+				<TextBlock TextWrapping="Wrap" Foreground="#FFC1272D" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="26.667" FontWeight="ExtraLight" TextAlignment="Center" Margin="0">
+					<Run Foreground="#FFC4C4C4" Text="let tax = 17.5%"/>
+					<Run Text="&#xA;"/>
+					<Run Foreground="#FF8A31C4" Text="1200 "/>
+					<Run Foreground="#FFF7931E" Text="- "/>
+					<Run Text="tax "/>
+					<Run Foreground="#FFF7931E" Text="→ "/>
+					<Run Foreground="#FF8A31C4" Text="1200 "/>
+					<Run Foreground="#FFF7931E" Text="- "/>
+					<Run Foreground="#FF8A31C4" Text="17.5%"/>
+				</TextBlock>
+				<TextBlock TextWrapping="Wrap" Text="A substitution can be used to turn a word into a shortcut to a value." Foreground="#FFF79522" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="20" FontWeight="ExtraLight" Margin="17,0,17,10" TextAlignment="Center"/>
+				<Rectangle Fill="#FFEBEBEB" Height="2" Stroke="Black" StrokeThickness="0"/>
+			</StackPanel>
+			<StackPanel Orientation="Vertical">
+				<Image HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="70" Source="Assets/words-01.png" Margin="0,10,0,0"/>
+
+				<TextBlock TextWrapping="Wrap" Text="Natural Language" Foreground="#FF8D0A0A" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="40" FontWeight="ExtraLight" Margin="0"/>
+				<TextBlock TextWrapping="Wrap" Foreground="#FFC1272D" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="26.667" FontWeight="ExtraLight" TextAlignment="Center" Margin="0">
+					<Run Foreground="#FF8A31C4" Text="12 "/>
+					<Run Foreground="#FFCDCDCD" Text="dollars "/>
+					<Run Foreground="#FFFBCB93" Text="x "/>
+					<Run Foreground="#FF8A31C4" Text="5 "/>
+					<Run Foreground="#FFCDCDCD" Text="people"/>
+					<LineBreak/>
+					<Run Foreground="#FF8A31C4" FontSize="22.667" Text="1200 "/>
+					<Run Foreground="#FFBFBFBF" FontSize="22.667" Text="pounds of cake "/>
+					<Run Foreground="#FFF79522" FontSize="22.667" Text="/ "/>
+					<Run Foreground="#FF8A31C4" FontSize="22.667" Text="16 "/>
+					<Run Foreground="#FFBFC5D4" FontSize="22.667" Text="selfish people"/>
+				</TextBlock>
+				<TextBlock TextWrapping="Wrap" Text="You can write words in any language at any point in the calculation , the app will figure out what to calculate" Foreground="#FF8D0A0A" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="20" FontWeight="ExtraLight" Margin="17,0,17,10" TextAlignment="Center"/>
+				<Rectangle Fill="#FFEBEBEB" Height="2" Stroke="Black" StrokeThickness="0"/>
+			</StackPanel>
+			<StackPanel Orientation="Vertical">
+				<Image HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="70" Source="Assets/fx-01.png" Margin="0,10,0,0"/>
+
+				<TextBlock TextWrapping="Wrap" Text="Functions" Foreground="#FFA30DD6" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="40" FontWeight="ExtraLight" Margin="0"/>
+				<TextBlock TextWrapping="Wrap" Foreground="#FFA007D5" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="26.667" FontWeight="ExtraLight" TextAlignment="Center" Margin="0">
+					<Run Foreground="#FF009C34" FontSize="22.667" Text="sin30 "/>
+					<Run Foreground="#FFD58407" FontSize="22.667" Text="+ "/>
+					<Run Foreground="#FF009C34" FontSize="22.667" Text="cos10 "/>
+					<Run Foreground="#FFD58407" FontSize="22.667" Text="+ "/>
+					<Run Foreground="#FF009C34" FontSize="22.667" Text="ln4 "/>
+					<Run Foreground="#FFD58407" FontSize="22.667" Text="+ "/>
+					<Run Foreground="#FF009C34" FontSize="22.667" Text="exp5"/>
+				</TextBlock>
+				<TextBlock TextWrapping="Wrap" Text="Use functions in your calculations." Foreground="#FFA30DD6" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="20" FontWeight="ExtraLight" Margin="17,0,17,10" TextAlignment="Center"/>
+				<Rectangle Fill="#FFEBEBEB" Height="2" Stroke="Black" StrokeThickness="0"/>
+			</StackPanel>
+			<StackPanel Orientation="Vertical">
+				<Image HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="70" Source="Assets/perc-01.png" Margin="0,10,0,0"/>
+
+				<TextBlock TextWrapping="Wrap" Text="Percentages" Foreground="#FF5BB987" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="40" FontWeight="ExtraLight" Margin="0"/>
+				<TextBlock TextWrapping="Wrap" Foreground="#FF9F02D6" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="26.667" FontWeight="ExtraLight" TextAlignment="Center" Margin="0">
+					<Run FontSize="22.667" Text="250 "/>
+					<Run Foreground="#FFE17400" FontSize="22.667" Text="- "/>
+					<Run Foreground="#FF5BB987" FontSize="22.667" Text="10.5%"/>
+					<LineBreak/>
+					<Run FontSize="22.667" Text="(200 "/>
+					<Run Foreground="#FFE17400" FontSize="22.667" Text="+ "/>
+					<Run FontSize="22.667" Text="55.5 "/>
+					<Run Foreground="#FFE17400" FontSize="22.667" Text="* "/>
+					<Run FontSize="22.667" Text="2) "/>
+					<Run Foreground="#FFE17400" FontSize="22.667" Text="+ "/>
+					<Run Foreground="#FF5BB987" FontSize="22.667" Text="10%"/>
+				</TextBlock>
+				<TextBlock TextWrapping="Wrap" Text="Add or substract percentages from numbers or expressions." Foreground="#FF5BB987" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="20" FontWeight="ExtraLight" Margin="17,0,17,10" TextAlignment="Center"/>
+				<Rectangle Fill="#FFEBEBEB" Height="2" Stroke="Black" StrokeThickness="0"/>
+			</StackPanel>
+			<StackPanel Orientation="Vertical">
+				<Image HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="70" Source="Assets/k-01.png" Margin="0,10,0,0"/>
+
+				<TextBlock TextWrapping="Wrap" Text="k notation" Foreground="#FF0071BC" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="40" FontWeight="ExtraLight" Margin="0"/>
+				<TextBlock TextWrapping="Wrap" Foreground="#FF0071BC" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="26.667" FontWeight="ExtraLight" TextAlignment="Center" Margin="0">
+					<Run Text="100k"/>
+					<LineBreak/>
+					<Run Text="1.5k + 5k"/>
+				</TextBlock>
+				<TextBlock TextWrapping="Wrap" Text="Use k to multiply a number by 1000" Foreground="#FF0071BC" HorizontalAlignment="Center" FontFamily="Segoe WP" FontSize="20" FontWeight="ExtraLight" Margin="17,0,17,10" TextAlignment="Center"/>
+				<Rectangle Fill="#FFEBEBEB" Height="2" Stroke="Black" StrokeThickness="0"/>
+			</StackPanel>
+			<Button x:Name="btnStart" Content="Let's get started" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Background="#FF007AED" Margin="12,0" BorderBrush="#FF007AED"/>
+
+		</StackPanel>
+
+	</ScrollViewer>
+</Page>

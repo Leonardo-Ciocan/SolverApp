@@ -1,0 +1,3 @@
+MainPackage=C:\Users\Leonardo\Documents\Visual Studio 2013\Projects\CalculatorApp\CalculatorApp\CalculatorApp.Windows\bin\Release\CalculatorApp.Windows_1.1.0.1_Bundle\CalculatorApp.Windows_1.1.0.1_AnyCPU.appx
+SymbolPackage=C:\Users\Leonardo\Documents\Visual Studio 2013\Projects\CalculatorApp\CalculatorApp\CalculatorApp.Windows\AppPackages\CalculatorApp.Windows_1.1.0.1_Test\CalculatorApp.Windows_1.1.0.1_AnyCPU.appxsym
+ResourcePack=C:\Users\Leonardo\Documents\Visual Studio 2013\Projects\CalculatorApp\CalculatorApp\CalculatorApp.Windows\bin\Release\CalculatorApp.Windows_1.1.0.1_Bundle\CalculatorApp.Windows_1.1.0.1_scale-180.appx
