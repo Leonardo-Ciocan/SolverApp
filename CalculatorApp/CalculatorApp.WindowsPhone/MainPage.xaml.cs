@@ -54,7 +54,6 @@ namespace CalculatorApp
                            TileManager.SaveAndPin(tile, tileSmall, notebook.ID);
                 }
                 changes = false;
-                //TileManager.SaveAndPin(tile, tileSmall, "tile");
             };
             dt.Start();
         }
@@ -136,7 +135,6 @@ namespace CalculatorApp
         Random r = new Random();
         private void randomize(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            
             foreach (string s in App.Model.OpenNotebook.variableColors.Keys.ToArray())
             {
                 App.Model.OpenNotebook.variableColors[s] = Color.FromArgb(200, (byte)r.Next(0, 255), (byte)r.Next(0, 255), (byte)r.Next(0, 255));

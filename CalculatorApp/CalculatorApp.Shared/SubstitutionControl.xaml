@@ -13,8 +13,8 @@
     		<ColumnDefinition/>
     		<ColumnDefinition/>
     	</Grid.ColumnDefinitions>
-    	<TextBox TextWrapping="Wrap" VerticalAlignment="Center" Margin="15,0" Header="from" Text="{Binding Key, Mode=TwoWay}" Background="White" Foreground="#FF0084CB" BorderThickness="0"/>
-    	<TextBox TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Margin="15,0" Header="to" Text="{Binding Value, Mode=TwoWay}" BorderThickness="0" Background="White" Foreground="Black"/>
+    	<TextBox TextWrapping="Wrap" Margin="15,0" Text="{Binding Key, Mode=TwoWay}" Background="White" Foreground="#FF0084CB" BorderThickness="0" VerticalAlignment="Center" PlaceholderText="from"/>
+    	<TextBox TextWrapping="Wrap" Grid.Column="1" Margin="15,0" Text="{Binding Value, Mode=TwoWay}" BorderThickness="0" Background="White" Foreground="Black" VerticalAlignment="Center" PlaceholderText="to"/>
 
     </Grid>
 </UserControl>

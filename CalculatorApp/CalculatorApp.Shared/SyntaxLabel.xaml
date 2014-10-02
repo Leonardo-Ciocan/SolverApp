@@ -148,12 +148,12 @@
 	</UserControl.Resources>
     
     <Grid x:Name="root" VerticalAlignment="Top">
-    	<TextBox x:Name="hiddenText"  Text="{Binding Expression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#00000000" Background="#00E27777" BorderBrush="Transparent" Padding="0" FontSize="26.667" Margin="36,0,70,0" InputScope="Formula" Style="{StaticResource TextBoxStyle1}" />
-    	<TextBlock x:Name="txt" Text="{Binding Expression}" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Segoe UI" FontSize="26.667" Margin="38,2,69,0" IsHitTestVisible="False"/>
-    	<Grid HorizontalAlignment="Right" Width="65">
+    	<TextBox x:Name="hiddenText"  Text="{Binding Expression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#00000000" Background="#00E27777" BorderBrush="Transparent" Padding="0" FontSize="20" Margin="36,0,70,0" InputScope="Formula" Style="{StaticResource TextBoxStyle1}" FontFamily="Windows.UI.Xaml.Media.FontFamily" />
+    	<TextBlock x:Name="txt" Text="{Binding Expression}" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Segoe UI" FontSize="20" Margin="38,2,69,0" IsHitTestVisible="False"/>
+    	<Grid HorizontalAlignment="Right" Width="120">
     		<TextBlock x:Name="resultText" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFAFAFAF" Text="35" Margin="0,0,5,0" FontSize="26.667" FontFamily="Assets/consolas.ttf#Consolas"/>
     	</Grid>
-    	<TextBlock  x:Name="num" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFACACAC" Text="{Binding LineNumber}" Margin="10,0,339.32,0" FontSize="26.667" FontFamily="Assets/consolas.ttf#Consolas"/>
+    	<TextBlock  x:Name="num" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFACACAC" Text="{Binding LineNumber}" Margin="10,0,339.32,0" FontSize="20" FontFamily="Segoe UI"/>
     	<Grid x:Name="indicator" HorizontalAlignment="Left" Width="33" Background="#00000000">
     		<Ellipse x:Name="indicator1" HorizontalAlignment="Left" Height="33" Stroke="#7F000000" VerticalAlignment="Top" Width="33" Margin="0" Visibility="Collapsed"/>
     	</Grid>

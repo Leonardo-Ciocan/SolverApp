@@ -9,32 +9,31 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     
-    <StackPanel Holding="StackPanel_Holding" Orientation="Vertical" Margin="12,20,12,0" MaxHeight="300" Background="#CC000000">
+    <StackPanel Holding="StackPanel_Holding" Orientation="Vertical" Margin="12,20,12,0" MaxHeight="300">
 
         <FlyoutBase.AttachedFlyout>
             <MenuFlyout>
                 <MenuFlyoutItem Text="Delete sheet" Click="MenuFlyoutItem_Click"></MenuFlyoutItem>
             </MenuFlyout>
         </FlyoutBase.AttachedFlyout>
-        <Grid Height="52" Background="#FF0587C8" VerticalAlignment="Bottom">
-							<TextBox TextWrapping="Wrap" Text="{Binding Name , Mode=TwoWay}" VerticalAlignment="Center" FontFamily="Segoe WP" FontSize="16" Foreground="Black" BorderThickness="0" Background="{x:Null}" HorizontalAlignment="Center" MinWidth="100"/>
+        <Grid Height="37" VerticalAlignment="Bottom">
+							<TextBox TextWrapping="Wrap" Text="{Binding Name , Mode=TwoWay}" VerticalAlignment="Center"  FontSize="16" Foreground="#FF0071BC" BorderThickness="0" Background="{x:Null}" HorizontalAlignment="Center" MinWidth="100" IsReadOnly="True" FontFamily="Segoe UI" FontWeight="Light"/>
 						</Grid>
-
-						<Grid VerticalAlignment="Top">
-							<ListView ItemsSource="{Binding Lines}" Background="{Binding SelectedTheme.Background}">
-								<ListView.ItemContainerStyle>
-									<Style TargetType="ListViewItem">
-										<Setter Property="HorizontalContentAlignment" Value="Stretch" />
-									</Style>
-								</ListView.ItemContainerStyle>
-								<ListView.ItemTemplate>
-									<DataTemplate>
-										<local:SyntaxLabel  IsHitTestVisible="False" IsStaticLabel="True"/>
+        <Border VerticalAlignment="Top" BorderBrush="#FF0071BC" BorderThickness="1">
+        	<ListView ItemsSource="{Binding Lines}" Background="{Binding SelectedTheme.Background}" SelectionMode="None" IsHitTestVisible="False">
+        		<ListView.ItemContainerStyle>
+        			<Style TargetType="ListViewItem">
+        				<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        			</Style>
+        		</ListView.ItemContainerStyle>
+        		<ListView.ItemTemplate>
+        			<DataTemplate>
+        				<local:SyntaxLabel  IsHitTestVisible="False" IsStaticLabel="True"/>
 				
-									</DataTemplate>
-								</ListView.ItemTemplate>
-							</ListView>
-						</Grid>
+        			</DataTemplate>
+        		</ListView.ItemTemplate>
+        	</ListView>
+        </Border>
 
 					</StackPanel>
 </UserControl>

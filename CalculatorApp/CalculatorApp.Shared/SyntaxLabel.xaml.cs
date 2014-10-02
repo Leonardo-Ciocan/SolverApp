@@ -39,7 +39,7 @@ namespace CalculatorApp
 
         Line line;
         Sheet notebook;
-        FontFamily consolas = new FontFamily("ms-appx:///Assets/consolas.ttf#Consolas");
+        FontFamily consolas = new FontFamily("Segoe UI");//= new FontFamily("ms-appx:///Assets/consolas.ttf#Consolas");
 
         int i = 0;
         public SyntaxLabel(int i)
@@ -53,11 +53,6 @@ namespace CalculatorApp
         {
             DataContextChanged += (AlignmentX, k) =>
             {
-                //redm
-                
-
-
-                //DisplayText(line.Expression);
             }; 
 
             this.InitializeComponent();

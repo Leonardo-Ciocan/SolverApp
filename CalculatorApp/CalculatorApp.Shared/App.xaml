@@ -4,5 +4,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CalculatorApp">
 	
-	
+	<Application.Resources>
+	  <ResourceDictionary>
+
+             <!--After selection - Background-->
+            <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="Transparent"></SolidColorBrush>
+
+             <!--When pointer hovers over an item - Background-->
+            <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush" Color="Transparent"></SolidColorBrush>
+
+             <!--When the item is selected (first few milliseconds) - Background-->
+            <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="Transparent"></SolidColorBrush>
+
+             <!--When the item is selected (first few milliseconds) - Border-->
+            <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush" Color="Transparent"></SolidColorBrush>
+
+        </ResourceDictionary>
+	</Application.Resources>
+
 </Application>

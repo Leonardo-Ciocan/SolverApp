@@ -27,7 +27,15 @@ namespace CalculatorApp
 
         void SheetPreview_Loaded(object sender, RoutedEventArgs e)
         {
+            this.PointerEntered += (a, b) =>
+            {
+                this.Opacity = 0.9;
+            };
 
+            this.PointerExited += (a, b) =>
+            {
+                this.Opacity = 1;
+            };
         }
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
