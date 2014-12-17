@@ -364,5 +364,11 @@
     <MainPackageIdentityName>27721LeonardoCiocan.SolveX</MainPackageIdentityName>
     <MainPackageIdentityName>27721LeonardoCiocan.SpeedRead</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/40914684-454e-4765-99d5-4e17d91a6424" />
+  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/40914684-454e-4765-99d5-4e17d91a6424">
+    <PackageInfo>
+      <OsMinVersion>6.3.0.0</OsMinVersion>
+      <PackageArchitecture>neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>1.1.0.1</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="27721LeonardoCiocan.Computally" Publisher="CN=1872DA25-5610-449D-B7F2-33C7013DDFDC" Version="1.1.0.1" />
+  <Identity Name="27721LeonardoCiocan.Computally" Publisher="CN=1872DA25-5610-449D-B7F2-33C7013DDFDC" Version="1.1.0.3" />
   <Properties>
     <DisplayName>Computally</DisplayName>
     <PublisherDisplayName>Leonardo Ciocan</PublisherDisplayName>

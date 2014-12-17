@@ -115,6 +115,9 @@ namespace CalculatorApp
 
     public class Line : INotifyPropertyChanged
     {
+        [JsonIgnore]
+        public bool ShouldFocus { get; set; }
+
         public string _expression = "";
         public string Expression { get { return _expression; } set { _expression = value; OnPropertyChanged(); } }
 

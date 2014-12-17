@@ -28,7 +28,7 @@
         		</ListView.ItemContainerStyle>
         		<ListView.ItemTemplate>
         			<DataTemplate>
-        				<local:SyntaxLabel  IsHitTestVisible="False" IsStaticLabel="True"/>
+        				<local:SyntaxLabel  IsHitTestVisible="False" IsStaticLabel="True" />
 				
         			</DataTemplate>
         		</ListView.ItemTemplate>

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Appointments;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -158,7 +161,7 @@ namespace CalculatorApp
 
         private void new_sheet_clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Core.Sheets.Add(new Sheet { });
+            Core.Sheets.Add(new Sheet { Lines = new ObservableCollection<Line>{new Line()}});
         }
 
         private void add_new_line(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -191,6 +194,30 @@ namespace CalculatorApp
             {
                 TileManager.SaveAndPin(tile, tileSmall, notebook.ID);
             }
+        }
+
+        private void label_keydown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key != VirtualKey.Enter) return;
+            var label = sender as SyntaxLabel;
+            Line l = label.line;
+            if (App.Model.OpenNotebook.Lines.IndexOf(l) == App.Model.OpenNotebook.Lines.Count - 1)
+            {
+                App.Model.OpenNotebook.Lines.Add(new Line());
+                App.Model.OpenNotebook.Lines.Last().ShouldFocus = true;
+            }
+            else
+            {
+                App.Model.OpenNotebook.Lines.Insert(App.Model.OpenNotebook.Lines.IndexOf(l)+1 , new Line());
+                App.Model.OpenNotebook.Lines[App.Model.OpenNotebook.Lines.IndexOf(l) + 1].ShouldFocus = true;
+            }
+
+        }
+
+        void focus(int n)
+        {
+            var item = actualList.ContainerFromIndex(n);
+            (item as UserControl).Focus(FocusState.Keyboard);
         }
     }
 }

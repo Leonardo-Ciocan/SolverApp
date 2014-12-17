@@ -21,7 +21,7 @@ namespace CalculatorApp
 {
     public sealed partial class SyntaxLabel : UserControl
     {
-
+        public static bool ShouldLoad = false;
         public bool IsStaticLabel { get; set; }
         /*string _text ="";
         public string Text
@@ -37,7 +37,7 @@ namespace CalculatorApp
 
 
 
-        Line line;
+        public Line line;
         Sheet notebook;
         FontFamily consolas = new FontFamily("Segoe UI");//= new FontFamily("ms-appx:///Assets/consolas.ttf#Consolas");
 
@@ -61,6 +61,11 @@ namespace CalculatorApp
 
         void SyntaxLabel_Loaded(object sender, RoutedEventArgs e)
         {
+
+            hiddenText.KeyUp += (a, b) =>
+            {
+                //base.KeyDown(a, b);
+            };
 
             hiddenText.Foreground = AppSettings.Themes[App.Model.Settings.ThemeIndex].Background;
             hiddenText.Tapped += (Action, b) =>
@@ -252,6 +257,9 @@ namespace CalculatorApp
                     item.Foreground = AppSettings.Themes[App.Model.Settings.ThemeIndex].FunctionText;
                 }
                 txt.Inlines.Add(item);
+                
+                if (line.ShouldFocus) hiddenText.Focus(FocusState.Pointer);
+                line.ShouldFocus = false;
             }
         }
 
